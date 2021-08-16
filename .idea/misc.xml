@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable-v24/login_button_background.xml" value="0.2703125" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/login_button_background.xml" value="0.2703125" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_splash.xml" value="0.25181159420289856" />
       </map>
     </option>

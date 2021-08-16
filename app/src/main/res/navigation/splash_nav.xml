@@ -8,5 +8,14 @@
         tools:layout="@layout/fragment_splash"
         android:id="@+id/splashFragment"
         android:name="com.efecanbayat.deliveryapp.ui.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_login"
+        android:id="@+id/loginFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>
