@@ -9,4 +9,7 @@
     <string name="register_now">Register now</string>
     <string name="register">Register</string>
     <string name="sign_in">Sign in</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="name">Name</string>
 </resources>

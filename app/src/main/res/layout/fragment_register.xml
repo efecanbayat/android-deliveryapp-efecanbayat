@@ -50,7 +50,7 @@
                     android:background="@drawable/login_button_background"
                     android:backgroundTint="#E8E8E8"
                     android:fontFamily="@font/ubuntu"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:textColor="@color/black"
                     android:inputType="textPersonName"
                     android:padding="20dp" />
@@ -125,7 +125,7 @@
                     android:background="@drawable/login_button_background"
                     android:backgroundTint="#E8E8E8"
                     android:fontFamily="@font/ubuntu"
-                    android:hint="Confirm password"
+                    android:hint="@string/confirm_password"
                     android:textColor="@color/black"
                     android:inputType="textPassword"
                     android:padding="20dp" />
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu"
-                android:text="Already have an account ?"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:layout_marginBottom="8sp"
