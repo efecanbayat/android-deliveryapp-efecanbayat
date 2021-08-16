@@ -1,11 +1,13 @@
 package com.efecanbayat.deliveryapp.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.efecanbayat.deliveryapp.MainActivity
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.databinding.FragmentLoginBinding
 
@@ -30,6 +32,12 @@ class LoginFragment: Fragment() {
 
         binding.registerTextView.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 }

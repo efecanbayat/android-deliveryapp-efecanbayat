@@ -4,12 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable-v24/login_button_background.xml" value="0.2703125" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/bottom_nav_color.xml" value="0.2703125" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/ic_last_order.xml" value="0.2703125" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/ic_profile.xml" value="0.14635416666666667" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/drawable/login_button_background.xml" value="0.2703125" />
-        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/collapse.xml" value="0.2477355072463768" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_home.xml" value="0.25181159420289856" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_register.xml" value="0.25181159420289856" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_splash.xml" value="0.25181159420289856" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_category.xml" value="0.2477355072463768" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_restaurant.xml" value="0.2477355072463768" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
