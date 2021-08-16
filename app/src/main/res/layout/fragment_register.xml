@@ -32,16 +32,41 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginEmailEditText"
+                android:id="@+id/registerNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                android:layout_marginTop="80sp"
+                android:layout_marginTop="30sp"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginImageView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50sp"
+                    android:background="@drawable/login_button_background"
+                    android:backgroundTint="#E8E8E8"
+                    android:fontFamily="@font/ubuntu"
+                    android:hint="Name"
+                    android:textColor="@color/black"
+                    android:inputType="textPersonName"
+                    android:padding="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/registerEmailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                android:layout_marginTop="30sp"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registerNameEditText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -57,7 +82,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loginPasswordEditText"
+                android:id="@+id/registerPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxStrokeWidth="0dp"
@@ -66,7 +91,7 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginEmailEditText">
+                app:layout_constraintTop_toBottomOf="@+id/registerEmailEditText">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -81,40 +106,53 @@
                     android:padding="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/forgotPasswordTextView"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/registerConfirmPasswordEditText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 android:layout_marginTop="30sp"
-                android:fontFamily="@font/ubuntu"
-                android:text="@string/forgot_password"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginPasswordEditText" />
+                app:layout_constraintTop_toBottomOf="@+id/registerPasswordEditText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50sp"
+                    android:background="@drawable/login_button_background"
+                    android:backgroundTint="#E8E8E8"
+                    android:fontFamily="@font/ubuntu"
+                    android:hint="Confirm password"
+                    android:textColor="@color/black"
+                    android:inputType="textPassword"
+                    android:padding="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <TextView
                 android:id="@+id/infoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu"
-                android:text="@string/don_t_you_have_an_account"
+                android:text="Already have an account ?"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:layout_marginBottom="8sp"
-                app:layout_constraintBottom_toTopOf="@+id/registerTextView"
+                app:layout_constraintBottom_toTopOf="@+id/signInTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/registerTextView"
+                android:id="@+id/signInTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/ubuntu"
-                android:text="@string/register_now"
+                android:text="@string/sign_in"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold"
@@ -124,7 +162,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/loginButton"
+                android:id="@+id/registerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -133,7 +171,7 @@
                 android:background="@drawable/login_button_background"
                 android:fontFamily="@font/ubuntu"
                 android:padding="15dp"
-                android:text="@string/login"
+                android:text="@string/register"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

@@ -1,4 +1,4 @@
-package com.efecanbayat.deliveryapp.ui.login
+package com.efecanbayat.deliveryapp.ui.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.efecanbayat.deliveryapp.R
-import com.efecanbayat.deliveryapp.databinding.FragmentLoginBinding
+import com.efecanbayat.deliveryapp.databinding.FragmentRegisterBinding
 
-class LoginFragment: Fragment() {
-    private lateinit var binding: FragmentLoginBinding
+class RegisterFragment: Fragment() {
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(inflater,container,false)
+        binding = FragmentRegisterBinding.inflate(inflater,container,false)
         val view = binding.root
         return view
     }
@@ -29,8 +29,9 @@ class LoginFragment: Fragment() {
 
     private fun init() {
 
-        binding.registerTextView.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        binding.signInTextView.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+
     }
 }
