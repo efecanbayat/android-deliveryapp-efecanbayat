@@ -8,9 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary">#297F87</color>
-    <color name="secondary_light">#FFF7AE</color>
-    <color name="secondary_dark">#F6D167</color>
+    <color name="primary">#A6B1E1</color>
+    <color name="primary_dark">#424874</color>
+    <color name="secondary">#F4EEFF</color>
+    <color name="secondary_dark">#DCD6F7</color>
     <color name="red">#DF2E2E</color>
 
 </resources>
