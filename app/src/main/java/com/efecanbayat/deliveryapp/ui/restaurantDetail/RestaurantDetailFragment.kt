@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentRestaurantDetailBinding
 
@@ -48,7 +50,7 @@ class RestaurantDetailFragment: Fragment() {
         binding.foodRecyclerView.adapter = foodAdapter
         foodAdapter.addListener(object: IFoodOnClickListener{
             override fun onClick(food: Food) {
-                //nav to food detail
+                findNavController().navigate(R.id.action_restaurantDetailFragment_to_foodDetailFragment)
             }
 
         })

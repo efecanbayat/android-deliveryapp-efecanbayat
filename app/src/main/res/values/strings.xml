@@ -13,4 +13,5 @@
     <string name="confirm_password">Confirm password</string>
     <string name="name">Name</string>
     <string name="search_food">Search food</string>
+    <string name="order">Order</string>
 </resources>

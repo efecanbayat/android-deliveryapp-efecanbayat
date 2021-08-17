@@ -18,5 +18,14 @@
         tools:layout="@layout/fragment_restaurant_detail"
         android:id="@+id/restaurantDetailFragment"
         android:name="com.efecanbayat.deliveryapp.ui.restaurantDetail.RestaurantDetailFragment"
-        android:label="RestaurantDetailFragment" />
+        android:label="RestaurantDetailFragment" >
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_foodDetailFragment"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_food_detail"
+        android:id="@+id/foodDetailFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.foodDetail.FoodDetailFragment"
+        android:label="FoodDetailFragment" />
 </navigation>

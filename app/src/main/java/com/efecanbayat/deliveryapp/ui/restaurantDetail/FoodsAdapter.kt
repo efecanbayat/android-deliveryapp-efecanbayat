@@ -28,6 +28,10 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
 
         holder.binding.foodNameTextView.text = item.foodName
         holder.binding.foodDetailTextView.text = item.foodDetail
+
+        holder.itemView.setOnClickListener {
+            listener?.onClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
