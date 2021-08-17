@@ -10,10 +10,10 @@
         android:title=""
         android:icon="@drawable/ic_last_order" />
 
-    <item
-        android:id="@+id/profileFragment"
-        android:title=""
-        android:icon="@drawable/ic_profile" />
+<!--    <item-->
+<!--        android:id="@+id/profileFragment"-->
+<!--        android:title=""-->
+<!--        android:icon="@drawable/ic_profile" />-->
 
 
 </menu>
