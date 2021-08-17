@@ -9,5 +9,14 @@
         tools:layout="@layout/fragment_home"
         android:id="@+id/homeFragment"
         android:name="com.efecanbayat.deliveryapp.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_restaurant_detail"
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.restaurantDetail.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" />
 </navigation>

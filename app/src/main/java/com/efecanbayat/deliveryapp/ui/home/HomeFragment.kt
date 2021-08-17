@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.efecanbayat.deliveryapp.R
@@ -24,7 +25,21 @@ class HomeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+        initCarousel()
         return binding.root
+    }
+
+    private fun initCarousel() {
+        val images = ArrayList<Int>()
+        images.add(R.drawable.discount)
+        images.add(R.drawable.discount2)
+        images.add(R.drawable.discount3)
+        binding.carouselView.pageCount = images.size
+
+        binding.carouselView.setImageListener { position, imageView ->
+            imageView.setImageResource(images[position])
+            imageView.scaleType= ImageView.ScaleType.CENTER_CROP
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,22 +86,14 @@ class HomeFragment: Fragment() {
 
     private fun init() {
 
-        val images = ArrayList<Int>()
-        images.add(R.drawable.discount)
-        images.add(R.drawable.discount2)
-        images.add(R.drawable.discount3)
-        binding.carouselView.pageCount = images.size
 
-        binding.carouselView.setImageListener { position, imageView ->
-            imageView.setImageResource(images[position])
-            imageView.scaleType= ImageView.ScaleType.CENTER_CROP
-        }
 
         binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.restaurantRecyclerView.adapter = restaurantAdapter
         restaurantAdapter.addListener(object: IRestaurantOnClickListener{
             override fun onClick(restaurant: Restaurant) {
-                //nav to detail
+                findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailFragment)
+                restaurantAdapter.removeListeners()
             }
 
         })

@@ -28,6 +28,10 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
         holder.binding.restaurantNameTextView.text = item.restaurantName
         holder.binding.restaurantLocationTextView.text = item.restaurantLocation
 
+        holder.itemView.setOnClickListener {
+            listener?.onClick(item)
+        }
+
     }
 
     override fun getItemCount(): Int {

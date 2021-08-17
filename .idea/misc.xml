@@ -15,8 +15,10 @@
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_home.xml" value="0.25181159420289856" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_register.xml" value="0.25181159420289856" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_restaurant_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_splash.xml" value="0.25181159420289856" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_category.xml" value="0.2477355072463768" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_food.xml" value="0.36666666666666664" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_restaurant.xml" value="0.2477355072463768" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
       </map>
