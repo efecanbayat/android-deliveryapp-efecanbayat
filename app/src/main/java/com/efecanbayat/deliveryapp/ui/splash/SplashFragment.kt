@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.efecanbayat.deliveryapp.R
+import com.efecanbayat.deliveryapp.data.local.SharedPrefManager
 import com.efecanbayat.deliveryapp.databinding.FragmentSplashBinding
 
 class SplashFragment: Fragment() {
@@ -35,7 +36,12 @@ class SplashFragment: Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                if (!isOnboardingSeen()){
+                    findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
+                }else{
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                }
+
             }
 
             override fun onAnimationCancel(animation: Animator?) {
@@ -47,6 +53,10 @@ class SplashFragment: Fragment() {
             }
 
         })
+    }
+
+    private fun isOnboardingSeen(): Boolean {
+        return SharedPrefManager(requireContext()).isOnboardingSeen()
     }
 
 

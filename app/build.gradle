@@ -63,5 +63,7 @@ dependencies {
     //Support design
     implementation 'com.android.support:design:30.0.0'
 
+    //Indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 
 }

@@ -14,6 +14,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_login"
@@ -31,6 +34,15 @@
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_onboarding"
+        android:id="@+id/onboardingFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
