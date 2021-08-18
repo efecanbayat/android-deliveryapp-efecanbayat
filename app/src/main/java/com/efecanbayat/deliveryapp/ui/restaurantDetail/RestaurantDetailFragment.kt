@@ -11,7 +11,9 @@ import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentRestaurantDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RestaurantDetailFragment: Fragment() {
     private lateinit var binding: FragmentRestaurantDetailBinding
     private val foodAdapter = FoodsAdapter()

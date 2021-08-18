@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.efecanbayat.deliveryapp.data.entity.Order
 import com.efecanbayat.deliveryapp.databinding.FragmentOrderBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OrderFragment: Fragment() {
     private lateinit var binding: FragmentOrderBinding
     private var orderAdapter = OrdersAdapter()

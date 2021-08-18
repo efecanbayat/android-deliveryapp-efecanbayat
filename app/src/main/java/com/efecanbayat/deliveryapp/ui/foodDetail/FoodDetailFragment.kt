@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.databinding.FragmentFoodDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodDetailFragment: Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private val ingredientAdapter = IngredientsAdapter()

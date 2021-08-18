@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.databinding.FragmentRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment: Fragment() {
     private lateinit var binding: FragmentRegisterBinding
 

@@ -13,7 +13,9 @@ import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Category
 import com.efecanbayat.deliveryapp.data.entity.Restaurant
 import com.efecanbayat.deliveryapp.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment: Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val restaurantAdapter = RestaurantsAdapter()
