@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodImageView"
-        tools:text="Food Name" />
+        android:text="Food Name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingredientsRecylerView"
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toTopOf="@+id/orderButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Total: " />
+        android:text="Total: " />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/orderButton"

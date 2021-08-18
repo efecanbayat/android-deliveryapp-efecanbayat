@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.databinding.FragmentFoodDetailBinding
 
 class FoodDetailFragment: Fragment() {
@@ -45,5 +46,9 @@ class FoodDetailFragment: Fragment() {
 
         binding.ingredientsRecylerView.layoutManager = LinearLayoutManager(context)
         binding.ingredientsRecylerView.adapter = ingredientAdapter
+
+        Glide.with(requireContext())
+            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSffVLe7D0P5YzO9zNVOlrOsB8bogjvagabJg&usqp=CAU")
+            .into(binding.foodImageView)
     }
 }

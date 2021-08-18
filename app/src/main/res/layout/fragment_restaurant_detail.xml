@@ -33,6 +33,11 @@
                 android:id="@+id/restaurantNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="Restaurant Name"
+                android:fontFamily="@font/ubuntu"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_marginHorizontal="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/restaurantImageView"
@@ -50,35 +55,34 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/restaurantImageView"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView"
-                tools:text="Rating" />
+                android:text="Rating" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/restaurantFeeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/ubuntu"
+                android:text="Min Fee"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/restaurantTimeTextView"
                 app:layout_constraintStart_toEndOf="@+id/restaurantRatingTextView"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView"
-                tools:text="Min Fee" />
+                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/restaurantTimeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/ubuntu"
+                android:text="Time"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/restaurantFeeTextView"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView"
-                tools:text="Time" />
+                app:layout_constraintEnd_toEndOf="@+id/restaurantNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
