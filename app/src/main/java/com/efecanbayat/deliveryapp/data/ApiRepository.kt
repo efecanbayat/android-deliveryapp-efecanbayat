@@ -1,6 +1,7 @@
 package com.efecanbayat.deliveryapp.data
 
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
+import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.local.LocalDataSource
 import com.efecanbayat.deliveryapp.data.remote.RemoteDataSource
 import com.efecanbayat.deliveryapp.utils.performAuthTokenNetworkOperation
@@ -14,6 +15,15 @@ class ApiRepository @Inject constructor(
     fun login(request: LoginRequest) = performAuthTokenNetworkOperation(
         call = {
             remoteDataSource.postLogin(request)
+        },
+        saveToken = {
+            localDataSource.saveToken(it)
+        }
+    )
+
+    fun register(request: RegisterRequest) = performAuthTokenNetworkOperation(
+        call = {
+            remoteDataSource.postRegister(request)
         },
         saveToken = {
             localDataSource.saveToken(it)

@@ -3,6 +3,7 @@ package com.efecanbayat.deliveryapp.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.efecanbayat.deliveryapp.data.entity.login.LoginResponse
+import com.efecanbayat.deliveryapp.data.entity.register.RegisterResponse
 import kotlinx.coroutines.Dispatchers
 
 fun <T> performNetworkOperation(call: suspend () -> Resource<T>): LiveData<Resource<T>> {
@@ -29,6 +30,9 @@ fun <T> performAuthTokenNetworkOperation(
             val data = networkCall.data!!
 
             if (data is LoginResponse) {
+                saveToken(data.token)
+            }
+            if (data is RegisterResponse) {
                 saveToken(data.token)
             }
             emit(Resource.success(data))

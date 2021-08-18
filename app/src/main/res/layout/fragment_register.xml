@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/loginCardView"
+        android:id="@+id/registerCardView"
         app:cardBackgroundColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +20,7 @@
 
 
             <ImageView
-                android:id="@+id/loginImageView"
+                android:id="@+id/registerImageView"
                 android:layout_width="120sp"
                 android:layout_height="120sp"
                 android:layout_marginTop="30dp"
@@ -41,7 +41,7 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginImageView">
+                app:layout_constraintTop_toBottomOf="@+id/registerImageView">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -184,5 +184,18 @@
 
     </androidx.cardview.widget.CardView>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/registerAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_repeatCount="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

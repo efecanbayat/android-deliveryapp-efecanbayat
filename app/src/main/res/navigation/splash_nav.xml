@@ -31,11 +31,7 @@
         tools:layout="@layout/fragment_register"
         android:id="@+id/registerFragment"
         android:name="com.efecanbayat.deliveryapp.ui.register.RegisterFragment"
-        android:label="RegisterFragment" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:label="RegisterFragment" />
     <fragment
         tools:layout="@layout/fragment_onboarding"
         android:id="@+id/onboardingFragment"
