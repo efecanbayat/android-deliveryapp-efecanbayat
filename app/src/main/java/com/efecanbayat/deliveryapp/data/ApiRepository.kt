@@ -30,4 +30,8 @@ class ApiRepository @Inject constructor(
         }
     )
 
+    fun logout(){
+        localDataSource.saveToken("")
+    }
+
 }
