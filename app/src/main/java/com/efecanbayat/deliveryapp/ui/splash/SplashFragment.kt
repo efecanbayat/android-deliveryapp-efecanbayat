@@ -1,6 +1,7 @@
 package com.efecanbayat.deliveryapp.ui.splash
 
 import android.animation.Animator
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.auth0.android.jwt.JWT
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.local.SharedPrefManager
 import com.efecanbayat.deliveryapp.databinding.FragmentSplashBinding
+import com.efecanbayat.deliveryapp.ui.MainActivity
 
 class SplashFragment: Fragment() {
     private lateinit var binding: FragmentSplashBinding
@@ -36,10 +39,25 @@ class SplashFragment: Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
+                val token = getToken()
+
                 if (!isOnboardingSeen()){
                     findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
                 }else{
-                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    if (token.isNullOrEmpty()){
+                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    }else{
+                        val jwt = JWT(token)
+
+                        if (jwt.isExpired(0)) {
+                            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                        }else{
+                            val intent = Intent(context, MainActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
+
+                    }
                 }
 
             }
@@ -59,5 +77,8 @@ class SplashFragment: Fragment() {
         return SharedPrefManager(requireContext()).isOnboardingSeen()
     }
 
+    private fun getToken(): String? {
+        return SharedPrefManager(requireContext()).getToken()
+    }
 
 }
