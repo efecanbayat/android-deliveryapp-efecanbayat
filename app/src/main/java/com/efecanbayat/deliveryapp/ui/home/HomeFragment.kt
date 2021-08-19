@@ -6,18 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Category
-import com.efecanbayat.deliveryapp.data.entity.Restaurant
+import com.efecanbayat.deliveryapp.data.entity.restaurant.Restaurant
 import com.efecanbayat.deliveryapp.databinding.FragmentHomeBinding
+import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment: Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
+
     private val restaurantAdapter = RestaurantsAdapter()
     private val categoryAdapter = CategoriesAdapter()
 
@@ -29,6 +33,37 @@ class HomeFragment: Fragment() {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         initCarousel()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+        fetchRestaurants()
+        fetchData()
+    }
+
+
+    private fun fetchRestaurants() {
+        viewModel.getRestaurants().observe(viewLifecycleOwner, {
+            when(it.status){
+                Resource.Status.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+
+                    viewModel.restaurantList = it.data?.restaurantList
+                    setRestaurants(viewModel.restaurantList)
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+    private fun setRestaurants(restaurantList: ArrayList<Restaurant>?) {
+        restaurantAdapter.setRestaurantList(restaurantList)
     }
 
     private fun initCarousel() {
@@ -44,32 +79,7 @@ class HomeFragment: Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        init()
-        fetchData()
-    }
-
     private fun fetchData() {
-        val restaurant = Restaurant("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/1200px-Burger_King_logo_%281999%29.svg.png","Burger King","Nilüfer")
-        val restaurant3 = Restaurant("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/1200px-Burger_King_logo_%281999%29.svg.png","Burger King","Nilüfer")
-        val restaurant5 = Restaurant("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/1200px-Burger_King_logo_%281999%29.svg.png","Burger King","Nilüfer")
-        val restaurant7 = Restaurant("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/1200px-Burger_King_logo_%281999%29.svg.png","Burger King","Nilüfer")
-        val restaurant2 = Restaurant("https://media-cdn.tripadvisor.com/media/photo-s/1a/fe/be/14/papa-john-s-azerbaijan.jpg","Papa John's","Yıldırım")
-        val restaurant4 = Restaurant("https://media-cdn.tripadvisor.com/media/photo-s/1a/fe/be/14/papa-john-s-azerbaijan.jpg","Papa John's","Yıldırım")
-        val restaurant6 = Restaurant("https://media-cdn.tripadvisor.com/media/photo-s/1a/fe/be/14/papa-john-s-azerbaijan.jpg","Papa John's","Yıldırım")
-        val restaurant8 = Restaurant("https://media-cdn.tripadvisor.com/media/photo-s/1a/fe/be/14/papa-john-s-azerbaijan.jpg","Papa John's","Yıldırım")
-        val restaurantList = ArrayList<Restaurant>()
-        restaurantList.add(restaurant)
-        restaurantList.add(restaurant2)
-        restaurantList.add(restaurant3)
-        restaurantList.add(restaurant4)
-        restaurantList.add(restaurant5)
-        restaurantList.add(restaurant6)
-        restaurantList.add(restaurant7)
-        restaurantList.add(restaurant8)
-
-        restaurantAdapter.setRestaurantList(restaurantList)
 
         val category = Category(R.drawable.burger,"Burger")
         val category2 = Category(R.drawable.soup,"Soup")

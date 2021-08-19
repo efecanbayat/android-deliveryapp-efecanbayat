@@ -5,6 +5,7 @@ import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.local.LocalDataSource
 import com.efecanbayat.deliveryapp.data.remote.RemoteDataSource
 import com.efecanbayat.deliveryapp.utils.performAuthTokenNetworkOperation
+import com.efecanbayat.deliveryapp.utils.performNetworkOperation
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
@@ -33,5 +34,11 @@ class ApiRepository @Inject constructor(
     fun logout(){
         localDataSource.saveToken("")
     }
+
+    fun getRestaurants() = performNetworkOperation {
+            remoteDataSource.getRestaurants()
+        }
+
+
 
 }

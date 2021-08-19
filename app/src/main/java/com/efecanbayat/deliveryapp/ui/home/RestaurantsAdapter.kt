@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.efecanbayat.deliveryapp.data.entity.Restaurant
+import com.efecanbayat.deliveryapp.data.entity.restaurant.Restaurant
 import com.efecanbayat.deliveryapp.databinding.ItemRestaurantBinding
 
 class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
 
-    private var list = ArrayList<Restaurant>()
+    private var restaurantlist = ArrayList<Restaurant>()
     private var listener: IRestaurantOnClickListener? = null
 
     inner class RestaurantsViewHolder(val binding: ItemRestaurantBinding): RecyclerView.ViewHolder(binding.root)
@@ -20,13 +20,13 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
     }
 
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
-        val item = list[position]
+        val item = restaurantlist[position]
 
         Glide.with(holder.binding.restaurantImageView.context)
-            .load(item.restaurantImage).into(holder.binding.restaurantImageView)
+            .load(item.image).into(holder.binding.restaurantImageView)
 
-        holder.binding.restaurantNameTextView.text = item.restaurantName
-        holder.binding.restaurantLocationTextView.text = item.restaurantLocation
+        holder.binding.restaurantNameTextView.text = item.name
+        holder.binding.restaurantLocationTextView.text = item.district
 
         holder.itemView.setOnClickListener {
             listener?.onClick(item)
@@ -35,7 +35,7 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return restaurantlist.size
     }
 
     fun addListener(listener: IRestaurantOnClickListener){
@@ -46,8 +46,10 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
         this.listener = null
     }
 
-    fun setRestaurantList(list: List<Restaurant>){
-        this.list = ArrayList(list)
-        notifyDataSetChanged()
+    fun setRestaurantList(restaurantlist: ArrayList<Restaurant>?){
+        restaurantlist?.let {
+            this.restaurantlist = restaurantlist
+            notifyDataSetChanged()
+        }
     }
 }
