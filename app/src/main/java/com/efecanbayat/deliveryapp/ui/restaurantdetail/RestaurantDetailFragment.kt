@@ -1,21 +1,27 @@
-package com.efecanbayat.deliveryapp.ui.restaurantDetail
+package com.efecanbayat.deliveryapp.ui.restaurantdetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentRestaurantDetailBinding
+import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RestaurantDetailFragment: Fragment() {
     private lateinit var binding: FragmentRestaurantDetailBinding
+    private val viewModel: RestaurantDetailViewModel by viewModels()
+    private val args: RestaurantDetailFragmentArgs by navArgs()
     private val foodAdapter = FoodsAdapter()
 
     override fun onCreateView(
@@ -49,12 +55,35 @@ class RestaurantDetailFragment: Fragment() {
 
     private fun init() {
 
-        Glide.with(requireContext())
-            .load("data:image/png;base64,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")
-            .into(binding.restaurantImageView)
+        viewModel.getRestaurantDetail(args.restaurantId).observe(viewLifecycleOwner, {
+            when(it.status){
+                Resource.Status.LOADING -> {
+                    binding.restaurantCardConstaint.visibility = View.GONE
+                    binding.restaurantProgressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.restaurantProgressBar.visibility = View.GONE
+                    binding.restaurantCardConstaint.visibility = View.VISIBLE
+                    val restaurant = it.data!!.data
+
+                    Glide.with(requireContext())
+                        .load(restaurant.image)
+                        .into(binding.restaurantImageView)
+                    binding.restaurantNameTextView.text = restaurant.name
+                    binding.restaurantDistrictTextView.text = restaurant.district
+                    binding.restaurantRatingTextView.text = restaurant.minimumDeliveryFee
+                    binding.restaurantFeeTextView.text = restaurant.minimumDeliveryFee
+                    binding.restaurantTimeTextView.text = restaurant.deliveryTime
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
 
         binding.foodRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.foodRecyclerView.adapter = foodAdapter
+
         foodAdapter.addListener(object: IFoodOnClickListener{
             override fun onClick(food: Food) {
                 findNavController().navigate(R.id.action_restaurantDetailFragment_to_foodDetailFragment)

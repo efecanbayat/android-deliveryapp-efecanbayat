@@ -1,4 +1,4 @@
-package com.efecanbayat.deliveryapp.ui.restaurantDetail
+package com.efecanbayat.deliveryapp.ui.restaurantdetail
 
 import com.efecanbayat.deliveryapp.data.entity.Food
 

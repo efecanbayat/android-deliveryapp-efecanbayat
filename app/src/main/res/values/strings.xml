@@ -18,4 +18,7 @@
     <string name="previous">Previous</string>
     <string name="my_orders">My Orders</string>
     <string name="logout">Logout</string>
+    <string name="rating">Rating</string>
+    <string name="min_fee">Min Fee</string>
+    <string name="time">Time</string>
 </resources>

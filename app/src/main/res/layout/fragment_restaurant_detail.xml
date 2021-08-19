@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/restaurantCardView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
@@ -16,74 +16,157 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
 
+        <ProgressBar
+            android:id="@+id/restaurantProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/restaurantCardConstaint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/restaurantImageView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/restaurantNameTextView"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Restaurant Name"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/ubuntu"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/restaurantImageView"
-                app:layout_constraintTop_toTopOf="@+id/restaurantImageView" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantImageView"
+                tools:text="Restaurant Name" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/restaurantRatingTextView"
-                android:layout_width="wrap_content"
+                android:id="@+id/restaurantDistrictTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/ubuntu"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/restaurantImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView"
-                android:text="Rating" />
+                tools:text="District" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/restaurantFeeTextView"
+            <LinearLayout
+                android:id="@+id/ratingLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/feeLinearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/feeLinearLayout"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantRatingTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="@string/rating"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantRatingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="8.7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/feeLinearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/ubuntu"
-                android:text="Min Fee"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/restaurantTimeTextView"
-                app:layout_constraintStart_toEndOf="@+id/restaurantRatingTextView"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView" />
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restaurantDistrictTextView">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/restaurantTimeTextView"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantFeeTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="@string/min_fee"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantFeeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="30 $" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/timeLinearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/ubuntu"
-                android:text="Time"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/restaurantNameTextView"
-                app:layout_constraintTop_toBottomOf="@+id/restaurantNameTextView" />
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/feeLinearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/feeLinearLayout">
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantTimeTitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="@string/time"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/restaurantTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="30-45 min" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

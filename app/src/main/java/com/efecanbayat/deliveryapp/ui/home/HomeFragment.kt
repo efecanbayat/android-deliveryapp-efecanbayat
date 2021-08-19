@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,18 @@ class HomeFragment: Fragment() {
         init()
         fetchRestaurants()
         fetchData()
+        addListeners()
+    }
+
+    private fun addListeners() {
+        restaurantAdapter.addListener(object: IRestaurantOnClickListener{
+            override fun onClick(restaurant: Restaurant) {
+                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
+                findNavController().navigate(action)
+                restaurantAdapter.removeListeners()
+            }
+
+        })
     }
 
 

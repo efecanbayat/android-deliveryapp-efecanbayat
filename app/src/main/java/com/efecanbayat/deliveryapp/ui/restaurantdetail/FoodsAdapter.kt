@@ -1,4 +1,4 @@
-package com.efecanbayat.deliveryapp.ui.restaurantDetail
+package com.efecanbayat.deliveryapp.ui.restaurantdetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

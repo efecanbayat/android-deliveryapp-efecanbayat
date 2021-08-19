@@ -17,11 +17,14 @@
     <fragment
         tools:layout="@layout/fragment_restaurant_detail"
         android:id="@+id/restaurantDetailFragment"
-        android:name="com.efecanbayat.deliveryapp.ui.restaurantDetail.RestaurantDetailFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.restaurantdetail.RestaurantDetailFragment"
         android:label="RestaurantDetailFragment" >
         <action
             android:id="@+id/action_restaurantDetailFragment_to_foodDetailFragment"
             app:destination="@id/foodDetailFragment" />
+        <argument
+            android:name="restaurantId"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_food_detail"
