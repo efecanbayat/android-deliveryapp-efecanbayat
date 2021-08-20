@@ -29,8 +29,12 @@
     <fragment
         tools:layout="@layout/fragment_food_detail"
         android:id="@+id/foodDetailFragment"
-        android:name="com.efecanbayat.deliveryapp.ui.foodDetail.FoodDetailFragment"
-        android:label="FoodDetailFragment" />
+        android:name="com.efecanbayat.deliveryapp.ui.fooddetail.FoodDetailFragment"
+        android:label="FoodDetailFragment" >
+        <argument
+            android:name="foodId"
+            app:argType="string" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_order"
         android:id="@+id/orderFragment"

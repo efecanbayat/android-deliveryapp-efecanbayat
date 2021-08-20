@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.efecanbayat.deliveryapp.data.entity.Food
+import com.efecanbayat.deliveryapp.data.entity.food.Food
 import com.efecanbayat.deliveryapp.databinding.ItemFoodBinding
 
 class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
 
-    private var list = ArrayList<Food>()
+    private var foodList = ArrayList<Food>()
     private var listener: IFoodOnClickListener? = null
 
     inner class FoodsViewHolder(val binding:ItemFoodBinding): RecyclerView.ViewHolder(binding.root)
@@ -20,14 +20,15 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FoodsViewHolder, position: Int) {
-        val item = list[position]
+        val item = foodList[position]
 
         Glide.with(holder.binding.foodImageView.context)
-            .load(item.foodImage)
+            .load(item.image)
             .into(holder.binding.foodImageView)
 
-        holder.binding.foodNameTextView.text = item.foodName
-        holder.binding.foodDetailTextView.text = item.foodDetail
+        holder.binding.foodNameTextView.text = item.name
+        holder.binding.foodDescriptionTextView.text = item.description
+        holder.binding.foodPriceTextView.text = "${item.price} $"
 
         holder.itemView.setOnClickListener {
             listener?.onClick(item)
@@ -35,7 +36,7 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return foodList.size
     }
 
     fun addListener(listener: IFoodOnClickListener){
@@ -47,7 +48,7 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
     }
 
     fun setFoodList(list: List<Food>){
-        this.list = ArrayList(list)
+        this.foodList = ArrayList(list)
         notifyDataSetChanged()
     }
 }

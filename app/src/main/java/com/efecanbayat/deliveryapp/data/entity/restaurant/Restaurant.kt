@@ -1,6 +1,6 @@
 package com.efecanbayat.deliveryapp.data.entity.restaurant
 
-import com.efecanbayat.deliveryapp.data.entity.Food
+import com.efecanbayat.deliveryapp.data.entity.food.Food
 import com.google.gson.annotations.SerializedName
 
 data class Restaurant(
@@ -16,6 +16,8 @@ data class Restaurant(
     val address: String,
     @SerializedName("district")
     val district: String,
+    @SerializedName("rating")
+    val rating: String,
     @SerializedName("meals")
     val foods: ArrayList<Food>,
     @SerializedName("minDeliveryFee")

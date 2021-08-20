@@ -1,9 +1,8 @@
-package com.efecanbayat.deliveryapp.ui.foodDetail
+package com.efecanbayat.deliveryapp.ui.fooddetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.databinding.ItemIngredientBinding
 
 class IngredientsAdapter: RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {

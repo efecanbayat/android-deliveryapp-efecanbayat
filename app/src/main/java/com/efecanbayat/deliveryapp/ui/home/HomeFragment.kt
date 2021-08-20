@@ -115,13 +115,7 @@ class HomeFragment: Fragment() {
 
         binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context,2)
         binding.restaurantRecyclerView.adapter = restaurantAdapter
-        restaurantAdapter.addListener(object: IRestaurantOnClickListener{
-            override fun onClick(restaurant: Restaurant) {
-                findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailFragment)
-                restaurantAdapter.removeListeners()
-            }
 
-        })
         binding.categoryRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.categoryRecyclerView.adapter = categoryAdapter
     }

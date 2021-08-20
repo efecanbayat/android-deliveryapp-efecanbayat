@@ -1,4 +1,4 @@
-package com.efecanbayat.deliveryapp.ui.foodDetail
+package com.efecanbayat.deliveryapp.ui.fooddetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
