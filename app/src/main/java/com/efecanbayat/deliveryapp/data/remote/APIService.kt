@@ -1,5 +1,6 @@
 package com.efecanbayat.deliveryapp.data.remote
 
+import com.efecanbayat.deliveryapp.data.entity.food.FoodResponse
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginResponse
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
@@ -25,4 +26,7 @@ interface APIService {
 
     @GET("a/restaurant/{id}")
     suspend fun getRestaurantById(@Path("id") restaurantId: String): Response<RestaurantResponse>
+
+    @GET("a/meal/{id}")
+    suspend fun getFoodById(@Path("id") foodId: String): Response<FoodResponse>
 }

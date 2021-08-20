@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.databinding.FragmentFoodDetailBinding
+import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FoodDetailFragment: Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
+    private val args: FoodDetailFragmentArgs by navArgs()
+    private val viewModel: FoodDetailViewModel by viewModels()
     private val ingredientAdapter = IngredientsAdapter()
 
     override fun onCreateView(
@@ -27,30 +32,36 @@ class FoodDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        fetchData()
-    }
-
-    private fun fetchData() {
-        val ingredient = "Pickle"
-        val ingredient2 = "Cheese"
-        val ingredient3 = "Patato"
-        val ingredient4 = "Tomato"
-        val ingredientList = ArrayList<String>()
-        ingredientList.add(ingredient)
-        ingredientList.add(ingredient2)
-        ingredientList.add(ingredient3)
-        ingredientList.add(ingredient4)
-
-        ingredientAdapter.setIngredientList(ingredientList)
     }
 
     private fun init(){
 
-        binding.ingredientsRecylerView.layoutManager = LinearLayoutManager(context)
-        binding.ingredientsRecylerView.adapter = ingredientAdapter
+        viewModel.getFoodDetails(args.foodId).observe(viewLifecycleOwner, {
+            when(it.status){
+                Resource.Status.LOADING -> {
+                    binding.itemsConstraintLayout.visibility = View.GONE
+                    binding.foodProgressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.itemsConstraintLayout.visibility = View.VISIBLE
+                    binding.foodProgressBar.visibility = View.GONE
+                    val food = it.data!!.data
 
-        Glide.with(requireContext())
-            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSffVLe7D0P5YzO9zNVOlrOsB8bogjvagabJg&usqp=CAU")
-            .into(binding.foodImageView)
+                    Glide.with(requireContext())
+                        .load(food.image)
+                        .into(binding.foodImageView)
+                    binding.foodNameTextView.text = food.name
+                    binding.totalTextView.text = "${food.price} $"
+                    ingredientAdapter.setIngredientList(food.ingredients)
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
+
+        binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.ingredientsRecyclerView.adapter = ingredientAdapter
+
     }
 }

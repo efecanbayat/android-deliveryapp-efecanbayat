@@ -21,4 +21,5 @@
     <string name="rating">Rating</string>
     <string name="min_fee">Min Fee</string>
     <string name="time">Time</string>
+    <string name="add_to_basket">Add to Basket</string>
 </resources>
