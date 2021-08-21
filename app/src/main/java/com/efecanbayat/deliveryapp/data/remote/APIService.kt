@@ -1,5 +1,7 @@
 package com.efecanbayat.deliveryapp.data.remote
 
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemResponse
 import com.efecanbayat.deliveryapp.data.entity.food.FoodResponse
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginResponse
@@ -39,4 +41,7 @@ interface APIService {
 
     @GET("a/order/bulk")
     suspend fun getOrders() : Response<OrderListResponse>
+
+    @POST("a/order/bulk")
+    suspend fun postBulkOrder(@Body request: BasketItemRequest): Response<BasketItemResponse>
 }

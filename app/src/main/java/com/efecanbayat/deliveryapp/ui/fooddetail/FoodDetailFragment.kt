@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.food.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentFoodDetailBinding
 import com.efecanbayat.deliveryapp.utils.Resource

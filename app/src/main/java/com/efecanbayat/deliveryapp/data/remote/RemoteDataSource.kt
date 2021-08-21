@@ -1,5 +1,6 @@
 package com.efecanbayat.deliveryapp.data.remote
 
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
@@ -35,5 +36,9 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
 
     suspend fun getOrders() = getResult {
         apiService.getOrders()
+    }
+
+    suspend fun postBulkOrder(request: BasketItemRequest) = getResult {
+        apiService.postBulkOrder(request)
     }
 }

@@ -1,6 +1,6 @@
 package com.efecanbayat.deliveryapp.data.local
 
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(

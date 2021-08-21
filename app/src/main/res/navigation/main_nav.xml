@@ -44,7 +44,7 @@
     <fragment
         tools:layout="@layout/fragment_basket"
         android:id="@+id/basketFragment"
-        android:name="com.efecanbayat.deliveryapp.ui.order.BasketFragment"
+        android:name="com.efecanbayat.deliveryapp.ui.basket.BasketFragment"
         android:label="BasketFragment" />
     <fragment
         tools:layout="@layout/fragment_profile"

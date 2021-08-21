@@ -2,7 +2,7 @@ package com.efecanbayat.deliveryapp.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 
 
 @Database(entities = [BasketItem::class], version = 1)

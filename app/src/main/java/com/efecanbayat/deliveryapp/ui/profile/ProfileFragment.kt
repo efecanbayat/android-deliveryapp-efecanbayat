@@ -1,6 +1,5 @@
 package com.efecanbayat.deliveryapp.ui.profile
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.R
-import com.efecanbayat.deliveryapp.data.entity.order.Order
-import com.efecanbayat.deliveryapp.data.entity.profile.IApplyOnClick
 import com.efecanbayat.deliveryapp.databinding.FragmentProfileBinding
-import com.efecanbayat.deliveryapp.ui.order.BasketItemsAdapter
 import com.efecanbayat.deliveryapp.ui.splash.SplashActivity
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.ArrayList
 
 @AndroidEntryPoint
 class ProfileFragment: Fragment(){

@@ -1,4 +1,4 @@
-package com.efecanbayat.deliveryapp.data.entity
+package com.efecanbayat.deliveryapp.data.entity.basket
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

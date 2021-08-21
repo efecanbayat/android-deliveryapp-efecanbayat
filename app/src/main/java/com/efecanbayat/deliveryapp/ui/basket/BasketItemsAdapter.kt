@@ -1,11 +1,10 @@
-package com.efecanbayat.deliveryapp.ui.order
+package com.efecanbayat.deliveryapp.ui.basket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
-import com.efecanbayat.deliveryapp.data.entity.order.Order
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.databinding.ItemBasketItemBinding
 
 class BasketItemsAdapter: RecyclerView.Adapter<BasketItemsAdapter.OrdersViewHolder>() {

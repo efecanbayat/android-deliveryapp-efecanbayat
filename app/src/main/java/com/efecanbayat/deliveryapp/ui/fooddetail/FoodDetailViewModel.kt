@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.food.FoodResponse
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

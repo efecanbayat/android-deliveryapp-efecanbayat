@@ -1,6 +1,7 @@
 package com.efecanbayat.deliveryapp.data
 
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
@@ -59,6 +60,10 @@ class ApiRepository @Inject constructor(
 
     fun getOrders() = performNetworkOperation {
         remoteDataSource.getOrders()
+    }
+
+    fun postBulkOrder(request: BasketItemRequest) = performNetworkOperation {
+        remoteDataSource.postBulkOrder(request)
     }
 
     fun getBasket() = localDataSource.getBasket()

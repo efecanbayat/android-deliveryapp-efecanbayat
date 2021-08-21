@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
-import com.efecanbayat.deliveryapp.data.entity.BasketItem
-import com.efecanbayat.deliveryapp.data.entity.order.Order
+import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.order.OrderListResponse
 import com.efecanbayat.deliveryapp.data.entity.profile.User
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
