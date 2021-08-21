@@ -8,10 +8,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.efecanbayat.deliveryapp.data.entity.food.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentOrderDialogBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderDialogFragment(val list: List<Food>): DialogFragment() {
+class OrderDialogFragment(val list: List<Food>): BottomSheetDialogFragment() {
     private lateinit var binding: FragmentOrderDialogBinding
     private val orderDetailAdapter = OrderDetailsAdapter()
 
