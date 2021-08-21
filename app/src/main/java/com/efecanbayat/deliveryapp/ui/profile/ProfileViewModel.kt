@@ -19,8 +19,6 @@ class ProfileViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ): ViewModel() {
 
-    var orderList: ArrayList<BasketItem>? = null
-
     fun logout() {
         apiRepository.logout()
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.efecanbayat.deliveryapp.R
+import com.efecanbayat.deliveryapp.data.entity.order.Order
 import com.efecanbayat.deliveryapp.databinding.FragmentProfileBinding
 import com.efecanbayat.deliveryapp.ui.splash.SplashActivity
 import com.efecanbayat.deliveryapp.utils.Resource
@@ -32,12 +33,22 @@ class ProfileFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        addListener()
+    }
+
+    private fun addListener() {
+        orderAdapter.addListeer(object: IOrderOnClickListener{
+            override fun onClick(order: Order) {
+                val dialog = OrderDialogFragment(order.meals)
+                dialog.show(requireActivity().supportFragmentManager,"orderDetailDialog")
+            }
+
+        })
     }
 
     private fun init(){
 
         getUser()
-
         getOrders()
 
         binding.profileUpdateTextView.setOnClickListener {

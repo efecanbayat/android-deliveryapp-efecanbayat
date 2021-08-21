@@ -10,6 +10,7 @@ import com.efecanbayat.deliveryapp.databinding.ItemOrderBinding
 class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
 
     private var list = ArrayList<Order>()
+    private var listener: IOrderOnClickListener? = null
 
     inner class OrderViewHolder(val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -27,6 +28,10 @@ class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
 
         holder.binding.orderRestaurantNameTextView.text = item.restaurant.name
 
+        holder.itemView.setOnClickListener {
+            listener?.onClick(item)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -36,5 +41,9 @@ class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
     fun setOrderList(list: List<Order>) {
         this.list = ArrayList(list)
         notifyDataSetChanged()
+    }
+
+    fun addListeer(listener: IOrderOnClickListener) {
+        this.listener = listener
     }
 }
