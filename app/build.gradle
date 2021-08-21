@@ -94,4 +94,9 @@ dependencies {
     //JWT Decode
     implementation 'com.auth0.android:jwtdecode:2.0.0'
 
+    //Room
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
 }

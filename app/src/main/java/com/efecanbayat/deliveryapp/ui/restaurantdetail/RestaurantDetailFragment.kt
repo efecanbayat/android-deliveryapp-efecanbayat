@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.food.Food
+import com.efecanbayat.deliveryapp.data.entity.restaurant.Restaurant
 import com.efecanbayat.deliveryapp.databinding.FragmentRestaurantDetailBinding
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ class RestaurantDetailFragment(): Fragment() {
     private val viewModel: RestaurantDetailViewModel by viewModels()
     private val args: RestaurantDetailFragmentArgs by navArgs()
     private val foodAdapter = FoodsAdapter()
+    private lateinit var restaurant: Restaurant
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +61,7 @@ class RestaurantDetailFragment(): Fragment() {
                     binding.restaurantRatingTextView.text = restaurant.rating
                     binding.restaurantFeeTextView.text = restaurant.minimumDeliveryFee
                     binding.restaurantTimeTextView.text = restaurant.deliveryTime
+                    this.restaurant = restaurant
 
                     foodAdapter.setFoodList(restaurant.foods)
                 }
@@ -76,7 +79,7 @@ class RestaurantDetailFragment(): Fragment() {
     private fun addListeners() {
         foodAdapter.addListener(object: IFoodOnClickListener{
             override fun onClick(food: Food) {
-                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToFoodDetailFragment(food.id)
+                val action = RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToFoodDetailFragment(food.id,restaurant.id,restaurant.name)
                 findNavController().navigate(action)
                 foodAdapter.removeListeners()
             }

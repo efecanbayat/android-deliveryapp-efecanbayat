@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.efecanbayat.deliveryapp.data.entity.Order
-import com.efecanbayat.deliveryapp.databinding.ItemOrderBinding
+import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.databinding.ItemBasketItemBinding
 
-class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+class BasketItemsAdapter: RecyclerView.Adapter<BasketItemsAdapter.OrdersViewHolder>() {
 
-    private var list = ArrayList<Order>()
+    private var list = ArrayList<BasketItem>()
 
-    inner class OrdersViewHolder(val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root)
+    inner class OrdersViewHolder(val binding: ItemBasketItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
-        val binding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ItemBasketItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return OrdersViewHolder(binding)
     }
 
@@ -22,18 +22,17 @@ class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
         val item = list[position]
 
         Glide.with(holder.binding.orderFoodImageView.context)
-            .load(item.orderFoodImage)
+            .load(item.foodImage)
             .into(holder.binding.orderFoodImageView)
 
-        holder.binding.orderFoodNameTextView.text = item.orderFoodName
-        holder.binding.orderFoodIngredientsTextView.text = item.orderFoodIngredients
+        holder.binding.orderFoodNameTextView.text = item.foodName
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    fun setOrderList(list: List<Order>){
+    fun setOrderList(list: List<BasketItem>){
         this.list = ArrayList(list)
         notifyDataSetChanged()
     }

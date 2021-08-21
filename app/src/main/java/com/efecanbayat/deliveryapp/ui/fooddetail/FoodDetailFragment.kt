@@ -9,23 +9,26 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.food.Food
 import com.efecanbayat.deliveryapp.databinding.FragmentFoodDetailBinding
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FoodDetailFragment: Fragment() {
+class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
     private val args: FoodDetailFragmentArgs by navArgs()
     private val viewModel: FoodDetailViewModel by viewModels()
     private val ingredientAdapter = IngredientsAdapter()
+    private lateinit var food:Food
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFoodDetailBinding.inflate(inflater,container,false)
+        binding = FragmentFoodDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,10 +37,10 @@ class FoodDetailFragment: Fragment() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
 
         viewModel.getFoodDetails(args.foodId).observe(viewLifecycleOwner, {
-            when(it.status){
+            when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.itemsConstraintLayout.visibility = View.GONE
                     binding.foodProgressBar.visibility = View.VISIBLE
@@ -52,6 +55,8 @@ class FoodDetailFragment: Fragment() {
                         .into(binding.foodImageView)
                     binding.foodNameTextView.text = food.name
                     binding.totalTextView.text = "${food.price} $"
+
+                    this.food = food
                     ingredientAdapter.setIngredientList(food.ingredients)
                 }
                 Resource.Status.ERROR -> {
@@ -62,6 +67,10 @@ class FoodDetailFragment: Fragment() {
 
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.ingredientsRecyclerView.adapter = ingredientAdapter
+
+        binding.addToBasketButton.setOnClickListener {
+            viewModel.addToBasket(BasketItem(0,args.restaurantId,food.id,food.name,args.restaurantName,food.price,food.image))
+        }
 
     }
 }

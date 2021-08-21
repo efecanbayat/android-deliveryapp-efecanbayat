@@ -29,26 +29,15 @@
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/ubuntu"
             android:textColor="@color/black"
+            android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/orderFoodImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/orderFoodImageView"
             app:layout_constraintTop_toTopOf="@+id/orderFoodImageView"
             tools:text="Food Name" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/orderFoodIngredientsTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/ubuntu"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/orderFoodImageView"
-            app:layout_constraintTop_toBottomOf="@+id/orderFoodNameTextView"
-            tools:text="Ingredients" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

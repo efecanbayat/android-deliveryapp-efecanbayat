@@ -22,4 +22,11 @@
     <string name="min_fee">Min Fee</string>
     <string name="time">Time</string>
     <string name="add_to_basket">Add to Basket</string>
+    <string name="update_your_profile">Update Your Profile</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="basket">Basket</string>
 </resources>

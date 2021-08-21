@@ -1,5 +1,6 @@
 package com.efecanbayat.deliveryapp.data
 
+import com.efecanbayat.deliveryapp.data.entity.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
@@ -34,7 +35,7 @@ class ApiRepository @Inject constructor(
         }
     )
 
-    fun logout(){
+    fun logout() {
         localDataSource.saveToken("")
     }
 
@@ -57,5 +58,11 @@ class ApiRepository @Inject constructor(
     fun updateUser(userRequest: UserRequest) = performNetworkOperation {
         authRemoteDataSource.updateUser(userRequest)
     }
+
+    fun getBasket() = localDataSource.getBasket()
+
+    fun addToBasket(basketItem: BasketItem) = localDataSource.addToBasket(basketItem)
+
+    fun deleteFromBasket(basketItem: BasketItem) = localDataSource.deleteFromBasket(basketItem)
 
 }

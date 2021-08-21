@@ -6,9 +6,9 @@
         android:title="" />
 
     <item
-        android:id="@+id/orderFragment"
+        android:id="@+id/basketFragment"
         android:title=""
-        android:icon="@drawable/ic_last_order" />
+        android:icon="@drawable/ic_basket" />
 
     <item
         android:id="@+id/profileFragment"
