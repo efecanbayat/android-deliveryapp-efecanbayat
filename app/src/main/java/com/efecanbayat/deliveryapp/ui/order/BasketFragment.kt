@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.efecanbayat.deliveryapp.data.entity.BasketItem
 import com.efecanbayat.deliveryapp.databinding.FragmentBasketBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class BasketFragment: Fragment() {
     private lateinit var binding: FragmentBasketBinding
     private val viewModel: BasketViewModel by viewModels()
-    private var orderAdapter = BasketItemsAdapter()
+    private var basketItemAdapter = BasketItemsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +37,10 @@ class BasketFragment: Fragment() {
 
     private fun init(){
 
-        val orderList = viewModel.getBasket()
-        orderAdapter.setOrderList(orderList)
+        val orderList = viewModel.getBasket() as ArrayList<BasketItem>
+        basketItemAdapter.setBasketItemList(orderList)
 
         binding.orderRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.orderRecyclerView.adapter = orderAdapter
+        binding.orderRecyclerView.adapter = basketItemAdapter
     }
 }

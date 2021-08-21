@@ -3,15 +3,16 @@ package com.efecanbayat.deliveryapp.data.remote
 import com.efecanbayat.deliveryapp.data.entity.food.FoodResponse
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginResponse
+import com.efecanbayat.deliveryapp.data.entity.order.OrderListResponse
+import com.efecanbayat.deliveryapp.data.entity.profile.User
+import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
+import com.efecanbayat.deliveryapp.data.entity.profile.UserResponse
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterResponse
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantListResponse
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface APIService {
 
@@ -29,4 +30,13 @@ interface APIService {
 
     @GET("a/meal/{id}")
     suspend fun getFoodById(@Path("id") foodId: String): Response<FoodResponse>
+
+    @GET("auth/profile")
+    suspend fun getUser() : Response<UserResponse>
+
+    @PUT("auth/updateDetails")
+    suspend fun updateUser(@Body userRequest: UserRequest) : Response<User>
+
+    @GET("a/order/bulk")
+    suspend fun getOrders() : Response<OrderListResponse>
 }

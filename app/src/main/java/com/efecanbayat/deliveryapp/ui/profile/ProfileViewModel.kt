@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
+import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.order.Order
+import com.efecanbayat.deliveryapp.data.entity.order.OrderListResponse
 import com.efecanbayat.deliveryapp.data.entity.profile.User
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserResponse
@@ -17,6 +20,8 @@ class ProfileViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ): ViewModel() {
 
+    var orderList: ArrayList<BasketItem>? = null
+
     fun logout() {
         apiRepository.logout()
     }
@@ -27,5 +32,9 @@ class ProfileViewModel @Inject constructor(
 
     fun updateUser(userRequest: UserRequest): LiveData<Resource<User>> {
         return apiRepository.updateUser(userRequest)
+    }
+
+    fun getOrders(): LiveData<Resource<OrderListResponse>> {
+        return apiRepository.getOrders()
     }
 }

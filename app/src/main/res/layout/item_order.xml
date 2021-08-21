@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/itemFoodImageView"
+            android:id="@+id/orderRestaurantImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="16dp"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/itemFoodNameTextView"
+            android:id="@+id/orderRestaurantNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -32,11 +32,11 @@
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/itemFoodImageView"
+            app:layout_constraintBottom_toBottomOf="@+id/orderRestaurantImageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemFoodImageView"
-            app:layout_constraintTop_toTopOf="@+id/itemFoodImageView"
-            tools:text="Food Name" />
+            app:layout_constraintStart_toEndOf="@+id/orderRestaurantImageView"
+            app:layout_constraintTop_toTopOf="@+id/orderRestaurantImageView"
+            tools:text="Restaurant Name" />
 
 
 

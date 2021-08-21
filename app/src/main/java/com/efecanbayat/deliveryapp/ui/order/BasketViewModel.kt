@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
 import com.efecanbayat.deliveryapp.data.entity.BasketItem
+import com.efecanbayat.deliveryapp.data.entity.order.Order
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

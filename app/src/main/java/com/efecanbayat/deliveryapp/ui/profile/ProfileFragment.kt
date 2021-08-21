@@ -8,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.R
+import com.efecanbayat.deliveryapp.data.entity.order.Order
 import com.efecanbayat.deliveryapp.data.entity.profile.IApplyOnClick
 import com.efecanbayat.deliveryapp.databinding.FragmentProfileBinding
+import com.efecanbayat.deliveryapp.ui.order.BasketItemsAdapter
 import com.efecanbayat.deliveryapp.ui.splash.SplashActivity
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class ProfileFragment: Fragment(){
     private lateinit var binding: FragmentProfileBinding
-
     private val viewModel: ProfileViewModel by viewModels()
+    private val orderAdapter = OrdersAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +44,8 @@ class ProfileFragment: Fragment(){
 
         getUser()
 
+        getOrders()
+
         binding.profileUpdateTextView.setOnClickListener {
             //show dialog to update profile
             val dialog = ProfileDialogFragment()
@@ -51,7 +57,30 @@ class ProfileFragment: Fragment(){
         }
     }
 
-     private fun getUser() {
+    private fun getOrders() {
+        viewModel.getOrders().observe(viewLifecycleOwner, {
+            when(it.status){
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.SUCCESS -> {
+
+                    it.data?.orderList?.let {
+                        binding.ordersRecylerView.layoutManager = LinearLayoutManager(context)
+                        binding.ordersRecylerView.adapter = orderAdapter
+                        orderAdapter.setOrderList(it)
+                    }
+
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+
+    private fun getUser() {
         viewModel.getUser().observe(viewLifecycleOwner, {
             when(it.status){
                 Resource.Status.LOADING -> {

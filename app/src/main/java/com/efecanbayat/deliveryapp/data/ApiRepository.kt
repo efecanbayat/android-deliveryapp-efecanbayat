@@ -5,7 +5,6 @@ import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.local.LocalDataSource
-import com.efecanbayat.deliveryapp.data.remote.AuthRemoteDataSource
 import com.efecanbayat.deliveryapp.data.remote.RemoteDataSource
 import com.efecanbayat.deliveryapp.utils.performAuthTokenNetworkOperation
 import com.efecanbayat.deliveryapp.utils.performNetworkOperation
@@ -13,7 +12,6 @@ import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource,
-    private var authRemoteDataSource: AuthRemoteDataSource,
     private var localDataSource: LocalDataSource
 ) {
 
@@ -52,11 +50,15 @@ class ApiRepository @Inject constructor(
     }
 
     fun getUser() = performNetworkOperation {
-        authRemoteDataSource.getUser()
+        remoteDataSource.getUser()
     }
 
     fun updateUser(userRequest: UserRequest) = performNetworkOperation {
-        authRemoteDataSource.updateUser(userRequest)
+        remoteDataSource.updateUser(userRequest)
+    }
+
+    fun getOrders() = performNetworkOperation {
+        remoteDataSource.getOrders()
     }
 
     fun getBasket() = localDataSource.getBasket()
