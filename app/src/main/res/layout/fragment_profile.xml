@@ -15,17 +15,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ProgressBar
+            android:id="@+id/profileProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileCardConstraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/profileImageView"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileUpdateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/ubuntu"
+                android:text="@string/update"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -40,7 +62,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImageView"
-                android:text="Efecan Bayat" />
+                tools:text="Username" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/profileMailTextView"
@@ -53,7 +75,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileNameTextView"
-                android:text="efecanbayat@gmail.com" />
+                tools:text="username@gmail.com" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/profilePhoneTextView"
@@ -66,7 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileMailTextView"
-                android:text="+90 500 00 00" />
+                tools:text="+90 500 00 00" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/profileAddressTextView"
@@ -80,7 +102,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilePhoneTextView"
-                android:text="Selçukbey Mahallesi Oduncu Sokak No:44"/>
+                tools:text="User's address"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

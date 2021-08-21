@@ -1,8 +1,10 @@
 package com.efecanbayat.deliveryapp.data
 
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
+import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.local.LocalDataSource
+import com.efecanbayat.deliveryapp.data.remote.AuthRemoteDataSource
 import com.efecanbayat.deliveryapp.data.remote.RemoteDataSource
 import com.efecanbayat.deliveryapp.utils.performAuthTokenNetworkOperation
 import com.efecanbayat.deliveryapp.utils.performNetworkOperation
@@ -10,6 +12,7 @@ import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource,
+    private var authRemoteDataSource: AuthRemoteDataSource,
     private var localDataSource: LocalDataSource
 ) {
 
@@ -47,5 +50,12 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getFoodById(foodId)
     }
 
+    fun getUser() = performNetworkOperation {
+        authRemoteDataSource.getUser()
+    }
+
+    fun updateUser(userRequest: UserRequest) = performNetworkOperation {
+        authRemoteDataSource.updateUser(userRequest)
+    }
 
 }
