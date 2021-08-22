@@ -46,6 +46,8 @@ This project is a food delivery application. In this project I learned the most 
 #### Home Screen
 -----
 
+* When the application is opened again check the token exist or not if it doesn't exist navigate to login screen
+* Jwt Decode checks the token is expired or not if it expired navigate to login screen
 * Restaurant List
 * Restaurants can be search by name and district
 * Restaurants can be filtered by category
