@@ -7,7 +7,6 @@ import com.efecanbayat.deliveryapp.data.ApiRepository
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemResponse
-import com.efecanbayat.deliveryapp.data.local.RoomDB
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

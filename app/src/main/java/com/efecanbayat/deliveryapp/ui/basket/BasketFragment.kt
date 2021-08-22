@@ -16,7 +16,7 @@ import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BasketFragment: Fragment() {
+class BasketFragment : Fragment() {
     private lateinit var binding: FragmentBasketBinding
     private val viewModel: BasketViewModel by viewModels()
     private var basketItemAdapter = BasketItemsAdapter()
@@ -28,16 +28,17 @@ class BasketFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBasketBinding.inflate(inflater,container,false)
+        binding = FragmentBasketBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initOrders()
+        addListeners()
     }
 
-    private fun init(){
+    private fun initOrders() {
 
         val orderList = viewModel.getBasket() as ArrayList<BasketItem>
         basketItemAdapter.setBasketItemList(orderList)
@@ -45,8 +46,12 @@ class BasketFragment: Fragment() {
 
         binding.orderRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.orderRecyclerView.adapter = basketItemAdapter
+    }
+
+    private fun addListeners() {
 
         binding.clearButton.setOnClickListener {
+
             viewModel.deleteFromBasket(viewModel.itemList)
             Toast.makeText(requireContext(), "Basket Cleared", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_basketFragment_self)
@@ -58,18 +63,23 @@ class BasketFragment: Fragment() {
                 foodIdsList.add(item.foodId)
                 restaurantId = item.restaurantId
             }
-            viewModel.postBulkOrder(restaurantId,foodIdsList).observe(viewLifecycleOwner, {
-                when(it.status){
-                    Resource.Status.LOADING -> {
 
+            viewModel.postBulkOrder(restaurantId, foodIdsList).observe(viewLifecycleOwner, {
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.itemsConstraintLayout.visibility = View.GONE
                     }
                     Resource.Status.SUCCESS -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.itemsConstraintLayout.visibility = View.VISIBLE
                         viewModel.deleteFromBasket(viewModel.itemList)
                         Toast.makeText(requireContext(), "Order Successful", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_basketFragment_self)
                     }
                     Resource.Status.ERROR -> {
-
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
                     }
                 }
             })

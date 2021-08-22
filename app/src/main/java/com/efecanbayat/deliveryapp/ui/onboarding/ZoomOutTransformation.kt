@@ -2,8 +2,6 @@ package com.efecanbayat.deliveryapp.ui.onboarding
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import kotlin.math.abs
-import androidx.viewpager.widget.ViewPager
 
 
 class ZoomOutTransformation : ViewPager2.PageTransformer {

@@ -36,12 +36,13 @@ class OnboardingFragment: Fragment() {
         binding.dotsIndicator.setViewPager2(binding.onboardingViewPager)
 
         binding.onboardingViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (position == 0) {
                     binding.prevButton.visibility = View.GONE
                     binding.nextButton.setOnClickListener {
-                        binding.onboardingViewPager.currentItem = binding.onboardingViewPager.currentItem + 1
+                        binding.onboardingViewPager.currentItem += 1
                     }
                 } else if (position == 2) {
                     binding.prevButton.visibility = View.VISIBLE
@@ -55,12 +56,10 @@ class OnboardingFragment: Fragment() {
                     binding.prevButton.visibility = View.VISIBLE
                     binding.nextButton.text = "Next"
                     binding.nextButton.setOnClickListener {
-                        binding.onboardingViewPager.currentItem =
-                            binding.onboardingViewPager.currentItem + 1
+                        binding.onboardingViewPager.currentItem += 1
                     }
                     binding.prevButton.setOnClickListener {
-                        binding.onboardingViewPager.currentItem =
-                            binding.onboardingViewPager.currentItem - 1
+                        binding.onboardingViewPager.currentItem -= 1
                     }
                 }
             }

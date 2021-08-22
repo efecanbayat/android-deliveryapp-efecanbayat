@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="8dp"
-    app:contentPadding="16dp"
     app:cardCornerRadius="16dp"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/secondary_dark"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,17 +28,30 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/ubuntu"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/itemFoodImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemFoodImageView"
             app:layout_constraintTop_toTopOf="@+id/itemFoodImageView"
             tools:text="Food Name" />
 
-
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemFoodPriceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/ubuntu"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/itemFoodNameTextView"
+            app:layout_constraintStart_toStartOf="@+id/itemFoodNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/itemFoodNameTextView"
+            tools:text="Price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

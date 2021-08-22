@@ -152,11 +152,7 @@ class HomeFragment : Fragment() {
 
                             }
                             Resource.Status.ERROR -> {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error! Try again",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
                             }
                         }
                     })
