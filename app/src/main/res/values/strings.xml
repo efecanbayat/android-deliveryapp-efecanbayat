@@ -51,6 +51,7 @@
     <string name="small_gourmet_pleasures_to_sparkle_your_day">Small gourmet pleasures to sparkle your day.</string>
     <string name="delivery_to_your_office">Delivery to your office</string>
     <string name="you_want_it_to_be_delivered_at_home_at_your_n_office_or_even_come_get_back_your_n_parcel_a_tour_shop">You want it to be delivered at home, at your \n office or even come get back your \n parcel a tour shop.</string>
+    <string name="last_orders">Last Orders</string>
 
     <string-array name="Categories">
         <item>Burger</item>

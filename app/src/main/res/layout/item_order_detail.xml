@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="8dp"
     app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/secondary"
     android:layout_margin="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -14,8 +15,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/orderFoodImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,17 +28,29 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/ubuntu"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/orderFoodImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/orderFoodImageView"
             app:layout_constraintTop_toTopOf="@+id/orderFoodImageView"
             tools:text="Food Name" />
 
-
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/orderFoodPriceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/ubuntu"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/orderFoodImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/orderFoodImageView"
+            tools:text="Price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

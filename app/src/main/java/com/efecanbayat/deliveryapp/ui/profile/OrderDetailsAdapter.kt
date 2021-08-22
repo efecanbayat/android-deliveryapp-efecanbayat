@@ -9,7 +9,7 @@ import com.efecanbayat.deliveryapp.databinding.ItemOrderDetailBinding
 
 class OrderDetailsAdapter: RecyclerView.Adapter<OrderDetailsAdapter.OrderDetailViewHolder>() {
 
-    private var list = ArrayList<Food>()
+    private var foodList = ArrayList<Food>()
 
     inner class OrderDetailViewHolder(val binding: ItemOrderDetailBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -19,21 +19,25 @@ class OrderDetailsAdapter: RecyclerView.Adapter<OrderDetailsAdapter.OrderDetailV
     }
 
     override fun onBindViewHolder(holder: OrderDetailViewHolder, position: Int) {
-        val item = list[position]
+        val food = foodList[position]
 
-        Glide.with(holder.binding.orderFoodImageView.context)
-            .load(item.image)
-            .into(holder.binding.orderFoodImageView)
+        holder.binding.apply {
 
-        holder.binding.orderFoodNameTextView.text = item.name
+            Glide.with(orderFoodImageView.context)
+                .load(food.image)
+                .into(orderFoodImageView)
+
+            orderFoodNameTextView.text = food.name
+            orderFoodPriceTextView.text = "${food.price} ₺"
+        }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return foodList.size
     }
 
-    fun setOrderDetailList(list: ArrayList<Food>){
-        this.list = list
+    fun setOrderDetailList(foodList: ArrayList<Food>){
+        this.foodList = foodList
         notifyDataSetChanged()
     }
 }

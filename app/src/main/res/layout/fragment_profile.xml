@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@drawable/app_background">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profileCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/secondary_dark"
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ProgressBar
-            android:id="@+id/profileProgressBar"
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profileCardConstraint"
@@ -35,19 +38,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/profileUpdateTextView"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/editProfileImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:fontFamily="@font/ubuntu"
-                android:text="@string/update"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -95,14 +94,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/ubuntu"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilePhoneTextView"
-                tools:text="User's address"/>
+                tools:text="User's address" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -116,6 +117,7 @@
         android:layout_marginHorizontal="50sp"
         android:layout_marginTop="16dp"
         android:background="@drawable/login_button_background"
+        android:backgroundTint="@color/primary_dark"
         android:fontFamily="@font/ubuntu"
         android:padding="12dp"
         android:text="@string/logout"
@@ -127,6 +129,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileCardView" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lastOrdersTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/last_orders"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordersRecylerView"
         android:layout_width="match_parent"
@@ -135,6 +150,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+        app:layout_constraintTop_toBottomOf="@+id/lastOrdersTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

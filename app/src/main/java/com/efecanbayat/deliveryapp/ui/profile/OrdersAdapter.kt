@@ -9,7 +9,7 @@ import com.efecanbayat.deliveryapp.databinding.ItemOrderBinding
 
 class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
 
-    private var list = ArrayList<Order>()
+    private var orderList = ArrayList<Order>()
     private var listener: IOrderOnClickListener? = null
 
     inner class OrderViewHolder(val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root)
@@ -20,30 +20,31 @@ class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-        val item = list[position]
+        val order = orderList[position]
 
-        Glide.with(holder.binding.orderRestaurantImageView.context)
-            .load(item.restaurant.image)
-            .into(holder.binding.orderRestaurantImageView)
+        holder.binding.apply {
 
-        holder.binding.orderRestaurantNameTextView.text = item.restaurant.name
+            Glide.with(orderRestaurantImageView.context)
+                .load(order.restaurant.image)
+                .into(orderRestaurantImageView)
 
-        holder.itemView.setOnClickListener {
-            listener?.onClick(item)
+            orderRestaurantNameTextView.text = order.restaurant.name
         }
-
+        holder.itemView.setOnClickListener {
+            listener?.onClick(order)
+        }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return orderList.size
     }
 
-    fun setOrderList(list: List<Order>) {
-        this.list = ArrayList(list)
+    fun setOrderList(orderList: List<Order>) {
+        this.orderList = ArrayList(orderList)
         notifyDataSetChanged()
     }
 
-    fun addListeer(listener: IOrderOnClickListener) {
+    fun addListener(listener: IOrderOnClickListener) {
         this.listener = listener
     }
 }

@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OrderDialogFragment(val list: List<Food>): BottomSheetDialogFragment() {
+
     private lateinit var binding: FragmentOrderDialogBinding
     private val orderDetailAdapter = OrderDetailsAdapter()
 
@@ -28,13 +29,18 @@ class OrderDialogFragment(val list: List<Food>): BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        addListeners()
     }
 
     private fun init() {
+
         binding.orderDetailRecylerView.layoutManager = LinearLayoutManager(context)
         binding.orderDetailRecylerView.adapter = orderDetailAdapter
 
         orderDetailAdapter.setOrderDetailList(ArrayList(list))
+    }
+
+    private fun addListeners() {
 
         binding.backButton.setOnClickListener {
             dismiss()

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,7 @@ import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment: Fragment(){
+class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModels()
     private val orderAdapter = OrdersAdapter()
@@ -26,88 +27,83 @@ class ProfileFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfileBinding.inflate(inflater,container,false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        getUser()
+        getOrders()
         addListener()
     }
 
-    private fun addListener() {
-        orderAdapter.addListeer(object: IOrderOnClickListener{
-            override fun onClick(order: Order) {
-                val dialog = OrderDialogFragment(order.meals)
-                dialog.show(requireActivity().supportFragmentManager,"orderDetailDialog")
-            }
+    private fun getUser() {
+        binding.apply {
 
-        })
-    }
-
-    private fun init(){
-
-        getUser()
-        getOrders()
-
-        binding.profileUpdateTextView.setOnClickListener {
-            //show dialog to update profile
-            val dialog = ProfileDialogFragment()
-            dialog.show(requireActivity().supportFragmentManager,"profileDialog")
-        }
-
-        binding.logoutButton.setOnClickListener {
-            logout()
+            viewModel.getUser().observe(viewLifecycleOwner, {
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+                        progressBar.visibility = View.VISIBLE
+                        profileCardConstraint.visibility = View.GONE
+                    }
+                    Resource.Status.SUCCESS -> {
+                        progressBar.visibility = View.GONE
+                        profileCardConstraint.visibility = View.VISIBLE
+                        profileImageView.setImageResource(R.drawable.user)
+                        profileNameTextView.text = it.data!!.user.name
+                        profileMailTextView.text = it.data.user.email
+                        profilePhoneTextView.text = it.data.user.phone
+                        profileAddressTextView.text = it.data.user.address
+                    }
+                    Resource.Status.ERROR -> {
+                        progressBar.visibility = View.GONE
+                        Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
         }
     }
 
     private fun getOrders() {
         viewModel.getOrders().observe(viewLifecycleOwner, {
-            when(it.status){
+            when (it.status) {
                 Resource.Status.LOADING -> {
 
                 }
                 Resource.Status.SUCCESS -> {
-
                     it.data?.orderList?.let {
                         binding.ordersRecylerView.layoutManager = LinearLayoutManager(context)
                         binding.ordersRecylerView.adapter = orderAdapter
                         orderAdapter.setOrderList(it)
                     }
-
                 }
                 Resource.Status.ERROR -> {
-
+                    Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
                 }
             }
         })
     }
 
+    private fun addListener() {
 
-    private fun getUser() {
-        viewModel.getUser().observe(viewLifecycleOwner, {
-            when(it.status){
-                Resource.Status.LOADING -> {
-                    binding.profileProgressBar.visibility = View.VISIBLE
-                    binding.profileCardConstraint.visibility = View.GONE
-                }
-                Resource.Status.SUCCESS -> {
-
-                    binding.profileProgressBar.visibility = View.GONE
-                    binding.profileCardConstraint.visibility = View.VISIBLE
-
-                    binding.profileImageView.setImageResource(R.drawable.user)
-                    binding.profileNameTextView.text = it.data!!.user.name
-                    binding.profileMailTextView.text = it.data.user.email
-                    binding.profilePhoneTextView.text = it.data.user.phone
-                    binding.profileAddressTextView.text = it.data.user.address
-                }
-                Resource.Status.ERROR -> {
-
-                }
+        orderAdapter.addListener(object : IOrderOnClickListener {
+            override fun onClick(order: Order) {
+                val dialog = OrderDialogFragment(order.meals)
+                dialog.show(requireActivity().supportFragmentManager, "orderDetailDialog")
             }
+
         })
+
+        binding.editProfileImageView.setOnClickListener {
+            //show dialog to update profile
+            val dialog = ProfileDialogFragment()
+            dialog.show(requireActivity().supportFragmentManager, "profileDialog")
+        }
+
+        binding.logoutButton.setOnClickListener {
+            logout()
+        }
     }
 
     private fun logout() {
@@ -116,5 +112,4 @@ class ProfileFragment: Fragment(){
         startActivity(intent)
         requireActivity().finish()
     }
-
 }
