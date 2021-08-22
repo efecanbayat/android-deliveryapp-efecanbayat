@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -56,6 +57,21 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
                 findNavController().navigate(action)
                 restaurantAdapter.removeListeners()
+            }
+
+        })
+
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val filterList = viewModel.searchTextOnRestaurantList(query)
+                setRestaurants(filterList)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filterList = viewModel.searchTextOnRestaurantList(newText)
+                setRestaurants(filterList)
+                return true
             }
 
         })

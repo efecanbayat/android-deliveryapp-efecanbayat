@@ -31,4 +31,18 @@ class HomeViewModel @Inject constructor(
     fun addRestaurant(request: RestaurantAddRequest): LiveData<Resource<RestaurantAddResponse>> {
         return apiRepository.addRestaurant(request)
     }
+
+    fun searchTextOnRestaurantList(text: String?): ArrayList<Restaurant>? {
+        if (text.isNullOrEmpty())
+            return restaurantList
+
+        val filterList: ArrayList<Restaurant> = arrayListOf()
+        restaurantList?.forEach { restaurant ->
+            if (restaurant.name.contains(text,true))
+                filterList.add(restaurant)
+            else if (restaurant.district.contains(text,true))
+                filterList.add(restaurant)
+        }
+        return filterList
+    }
 }
