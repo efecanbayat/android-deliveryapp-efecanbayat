@@ -14,11 +14,15 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
-): ViewModel() {
+) : ViewModel() {
 
     var restaurantList: ArrayList<Restaurant>? = null
 
     fun getRestaurants(): LiveData<Resource<RestaurantListResponse>> {
         return apiRepository.getRestaurants()
+    }
+
+    fun getRestaurantByCategory(category: String): LiveData<Resource<RestaurantListResponse>> {
+        return apiRepository.getRestaurantByCategory(category)
     }
 }

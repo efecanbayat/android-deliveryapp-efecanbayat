@@ -41,4 +41,8 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
     suspend fun postBulkOrder(request: BasketItemRequest) = getResult {
         apiService.postBulkOrder(request)
     }
+
+    suspend fun getRestaurantByCategory(category: String) = getResult {
+        apiService.getRestaurantByCategory(category)
+    }
 }

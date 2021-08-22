@@ -66,6 +66,10 @@ class ApiRepository @Inject constructor(
         remoteDataSource.postBulkOrder(request)
     }
 
+    fun getRestaurantByCategory(category: String) = performNetworkOperation {
+        remoteDataSource.getRestaurantByCategory(category)
+    }
+
     fun getBasket() = localDataSource.getBasket()
 
     fun addToBasket(basketItem: BasketItem) = localDataSource.addToBasket(basketItem)

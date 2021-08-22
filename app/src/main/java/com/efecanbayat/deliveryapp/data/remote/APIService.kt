@@ -34,14 +34,17 @@ interface APIService {
     suspend fun getFoodById(@Path("id") foodId: String): Response<FoodResponse>
 
     @GET("auth/profile")
-    suspend fun getUser() : Response<UserResponse>
+    suspend fun getUser(): Response<UserResponse>
 
     @PUT("auth/updateDetails")
-    suspend fun updateUser(@Body userRequest: UserRequest) : Response<User>
+    suspend fun updateUser(@Body userRequest: UserRequest): Response<User>
 
     @GET("a/order/bulk")
-    suspend fun getOrders() : Response<OrderListResponse>
+    suspend fun getOrders(): Response<OrderListResponse>
 
     @POST("a/order/bulk")
     suspend fun postBulkOrder(@Body request: BasketItemRequest): Response<BasketItemResponse>
+
+    @GET("a/restaurant/cuisine/{cuisineName}")
+    suspend fun getRestaurantByCategory(@Path("cuisineName") category: String): Response<RestaurantListResponse>
 }

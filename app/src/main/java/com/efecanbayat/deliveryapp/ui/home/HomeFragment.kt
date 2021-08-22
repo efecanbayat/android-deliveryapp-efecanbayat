@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,7 @@ import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
 
@@ -31,7 +30,7 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         initCarousel()
         return binding.root
     }
@@ -40,16 +39,48 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         fetchRestaurants()
-        fetchData()
+        fetchCategories()
         addListeners()
     }
 
     private fun addListeners() {
-        restaurantAdapter.addListener(object: IRestaurantOnClickListener{
+
+        restaurantAdapter.addListener(object : IRestaurantOnClickListener {
             override fun onClick(restaurant: Restaurant) {
-                val action = HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
                 findNavController().navigate(action)
                 restaurantAdapter.removeListeners()
+            }
+
+        })
+
+        categoryAdapter.addListener(object : ICategoryOnClickListener {
+            override fun onClick(category: Category) {
+                viewModel.getRestaurantByCategory(category.categoryName)
+                    .observe(viewLifecycleOwner, {
+                        when (it.status) {
+                            Resource.Status.LOADING -> {
+                                binding.progressBar.visibility = View.VISIBLE
+                                binding.restaurantRecyclerView.visibility = View.GONE
+                            }
+                            Resource.Status.SUCCESS -> {
+
+                                if (category.categoryName == "All") {
+                                    fetchRestaurants()
+                                } else {
+                                    binding.progressBar.visibility = View.GONE
+                                    binding.restaurantRecyclerView.visibility = View.VISIBLE
+                                    viewModel.restaurantList = it.data?.restaurantList
+                                    setRestaurants(viewModel.restaurantList)
+                                }
+
+                            }
+                            Resource.Status.ERROR -> {
+
+                            }
+                        }
+                    })
             }
 
         })
@@ -58,13 +89,14 @@ class HomeFragment: Fragment() {
 
     private fun fetchRestaurants() {
         viewModel.getRestaurants().observe(viewLifecycleOwner, {
-            when(it.status){
+            when (it.status) {
                 Resource.Status.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.restaurantRecyclerView.visibility = View.GONE
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-
+                    binding.restaurantRecyclerView.visibility = View.VISIBLE
                     viewModel.restaurantList = it.data?.restaurantList
                     setRestaurants(viewModel.restaurantList)
                 }
@@ -88,35 +120,31 @@ class HomeFragment: Fragment() {
 
         binding.carouselView.setImageListener { position, imageView ->
             imageView.setImageResource(images[position])
-            imageView.scaleType= ImageView.ScaleType.CENTER_CROP
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         }
     }
 
-    private fun fetchData() {
+    private fun fetchCategories() {
 
-        val category = Category(R.drawable.burger,"Burger")
-        val category2 = Category(R.drawable.soup,"Soup")
-        val category3= Category(R.drawable.chicken,"Chicken")
-        val category4 = Category(R.drawable.dessert,"Dessert")
-        val category5 = Category(R.drawable.kebab,"Kebab")
         val categoryList = ArrayList<Category>()
-        categoryList.add(category)
-        categoryList.add(category2)
-        categoryList.add(category3)
-        categoryList.add(category4)
-        categoryList.add(category5)
+        categoryList.add(Category(R.drawable.ic_dish, "All"))
+        categoryList.add(Category(R.drawable.ic_burger, "Burger"))
+        categoryList.add(Category(R.drawable.ic_pizza, "Pizza"))
+        categoryList.add(Category(R.drawable.ic_chicken, "Chicken"))
+        categoryList.add(Category(R.drawable.ic_kebab, "Kebab"))
+        categoryList.add(Category(R.drawable.ic_soup, "Soup"))
+        categoryList.add(Category(R.drawable.ic_dessert, "Dessert"))
 
         categoryAdapter.setCategoryList(categoryList)
     }
 
     private fun init() {
 
-
-
-        binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context,2)
+        binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.restaurantRecyclerView.adapter = restaurantAdapter
 
-        binding.categoryRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.categoryRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.categoryRecyclerView.adapter = categoryAdapter
     }
 }
