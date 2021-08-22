@@ -40,10 +40,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initCategoryAdapter()
         initRestaurantAdapter()
+        initUser()
         fetchCategories()
         fetchRestaurants()
         addListeners()
     }
+
 
     private fun initCarousel() {
         val images = ArrayList<Int>()
@@ -67,6 +69,32 @@ class HomeFragment : Fragment() {
     private fun initRestaurantAdapter() {
         binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.restaurantRecyclerView.adapter = restaurantAdapter
+    }
+
+    private fun initUser() {
+        viewModel.getUser().observe(viewLifecycleOwner, {
+            when(it.status) {
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val user = it.data!!.user
+                    val userRole = user.role
+                    isUserAdmin(userRole)
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+    private fun isUserAdmin(userRole: String) {
+        if (userRole == "admin") {
+            binding.addRestaurantButton.show()
+        }else {
+            binding.addRestaurantButton.hide()
+        }
     }
 
     private fun fetchCategories() {

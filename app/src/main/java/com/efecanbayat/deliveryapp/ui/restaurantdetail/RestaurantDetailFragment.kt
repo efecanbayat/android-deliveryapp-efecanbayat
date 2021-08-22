@@ -38,6 +38,7 @@ class RestaurantDetailFragment(): Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        initUser()
         addListeners()
     }
 
@@ -76,6 +77,32 @@ class RestaurantDetailFragment(): Fragment() {
         binding.foodRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.foodRecyclerView.adapter = foodAdapter
 
+    }
+
+    private fun initUser() {
+        viewModel.getUser().observe(viewLifecycleOwner, {
+            when(it.status) {
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.SUCCESS -> {
+                    val user = it.data!!.user
+                    val userRole = user.role
+                    isUserAdmin(userRole)
+                }
+                Resource.Status.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+    private fun isUserAdmin(userRole: String) {
+        if (userRole == "admin") {
+            binding.addFoodButton.show()
+        }else {
+            binding.addFoodButton.hide()
+        }
     }
 
     private fun addListeners() {
