@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -46,10 +47,10 @@ class RestaurantDetailFragment(): Fragment() {
             when(it.status){
                 Resource.Status.LOADING -> {
                     binding.restaurantCardConstaint.visibility = View.GONE
-                    binding.restaurantProgressBar.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 Resource.Status.SUCCESS -> {
-                    binding.restaurantProgressBar.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
                     binding.restaurantCardConstaint.visibility = View.VISIBLE
                     val restaurant = it.data!!.data
 
@@ -66,7 +67,8 @@ class RestaurantDetailFragment(): Fragment() {
                     foodAdapter.setFoodList(restaurant.foods)
                 }
                 Resource.Status.ERROR -> {
-
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
                 }
             }
         })

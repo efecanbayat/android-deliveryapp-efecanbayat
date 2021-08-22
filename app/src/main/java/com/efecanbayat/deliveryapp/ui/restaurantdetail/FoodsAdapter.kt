@@ -20,18 +20,21 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FoodsViewHolder, position: Int) {
-        val item = foodList[position]
+        val food = foodList[position]
 
-        Glide.with(holder.binding.foodImageView.context)
-            .load(item.image)
-            .into(holder.binding.foodImageView)
+        holder.binding.apply {
 
-        holder.binding.foodNameTextView.text = item.name
-        holder.binding.foodDescriptionTextView.text = item.description
-        holder.binding.foodPriceTextView.text = "${item.price} $"
+            Glide.with(foodImageView.context)
+                .load(food.image)
+                .into(foodImageView)
+
+            foodNameTextView.text = food.name
+            foodDescriptionTextView.text = food.description
+            foodPriceTextView.text = "${food.price} $"
+        }
 
         holder.itemView.setOnClickListener {
-            listener?.onClick(item)
+            listener?.onClick(food)
         }
     }
 

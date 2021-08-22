@@ -67,7 +67,7 @@ class RestaurantAddFragment() : BottomSheetDialogFragment() {
             val deliveryInfo = binding.deliveryInfoEditText.editText?.text.toString()
             val deliveryTime = binding.deliveryTimeEditText.editText?.text.toString()
             val minDeliveryFee = binding.minDeliveryFeeEditText.editText?.text.toString()
-            val paymentMethod = binding.categorySpinner.selectedItem.toString()
+            val paymentMethod = binding.paymentSpinner.selectedItem.toString()
             val rating = Random.nextInt(5, 10)
 
             val isNull = nullCheck(
@@ -137,35 +137,35 @@ class RestaurantAddFragment() : BottomSheetDialogFragment() {
         minDeliveryFee: String,
         paymentMethod: String,
     ): Boolean {
-        when {
+        return when {
             restaurantImage.isEmpty() -> {
-                return false
+                false
             }
             restaurantName.isEmpty() -> {
-                return false
+                false
             }
             restaurantCategory.isEmpty() -> {
-                return false
+                false
             }
             restaurantDistrict.isEmpty() -> {
-                return false
+                false
             }
             restaurantAddress.isEmpty() -> {
-                return false
+                false
             }
             deliveryInfo.isEmpty() -> {
-                return false
+                false
             }
             deliveryTime.isEmpty() -> {
-                return false
+                false
             }
             minDeliveryFee.isEmpty() -> {
-                return false
+                false
             }
             paymentMethod.isEmpty() -> {
-                return false
+                false
             }
-            else -> return true
+            else -> true
         }
     }
 }
