@@ -60,7 +60,7 @@ class RestaurantDetailFragment(): Fragment() {
                     binding.restaurantNameTextView.text = restaurant.name
                     binding.restaurantDistrictTextView.text = restaurant.district
                     binding.restaurantRatingTextView.text = restaurant.rating
-                    binding.restaurantFeeTextView.text = restaurant.minimumDeliveryFee
+                    binding.restaurantFeeTextView.text = "${restaurant.minimumDeliveryFee} ₺"
                     binding.restaurantTimeTextView.text = restaurant.deliveryTime
                     this.restaurant = restaurant
 

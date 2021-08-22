@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -35,6 +36,7 @@ class FoodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        addListeners()
     }
 
     private fun init() {
@@ -54,7 +56,7 @@ class FoodDetailFragment : Fragment() {
                         .load(food.image)
                         .into(binding.foodImageView)
                     binding.foodNameTextView.text = food.name
-                    binding.totalTextView.text = "${food.price} $"
+                    binding.totalTextView.text = "${food.price} ₺"
 
                     this.food = food
                     ingredientAdapter.setIngredientList(food.ingredients)
@@ -68,9 +70,13 @@ class FoodDetailFragment : Fragment() {
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.ingredientsRecyclerView.adapter = ingredientAdapter
 
+
+    }
+
+    private fun addListeners() {
         binding.addToBasketButton.setOnClickListener {
             viewModel.addToBasket(BasketItem(0,args.restaurantId,food.id,food.name,args.restaurantName,food.price,food.image))
+            Toast.makeText(requireContext(), "Added to basket", Toast.LENGTH_SHORT).show()
         }
-
     }
 }

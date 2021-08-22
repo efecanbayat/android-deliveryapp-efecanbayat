@@ -30,7 +30,7 @@ class FoodsAdapter: RecyclerView.Adapter<FoodsAdapter.FoodsViewHolder>() {
 
             foodNameTextView.text = food.name
             foodDescriptionTextView.text = food.description
-            foodPriceTextView.text = "${food.price} $"
+            foodPriceTextView.text = "${food.price} ₺"
         }
 
         holder.itemView.setOnClickListener {

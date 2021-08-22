@@ -18,7 +18,6 @@ class IngredientsAdapter: RecyclerView.Adapter<IngredientsAdapter.IngredientsVie
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val item = list[position]
-
         holder.binding.ingredientTextView.text = item
     }
 
