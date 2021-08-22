@@ -3,7 +3,7 @@
 
 ## About this project
 
-This project is a simple food ordering application. I learned the most used libraries and structures in android applications, in this project
+This project is a food delivery application. In this project I learned the most used structures in android applications.
 
 ## Used Technologies
 
@@ -17,6 +17,7 @@ This project is a simple food ordering application. I learned the most used libr
 * RecyclerView
 * Fragments
 * Room
+* JWT Decode
 
 ## Project Structure
 ------
@@ -78,7 +79,7 @@ This project is a simple food ordering application. I learned the most used libr
 
 <img src="./gifs/profile.gif" height="500px" width="250px"/>
 
-## Acknowledgments
+## Acknowledgements
 
 - Kodluyoruz Yemeksepeti Android Bootcamp
 - Patika.dev 
