@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
+import com.efecanbayat.deliveryapp.data.entity.foodadd.FoodAddRequest
+import com.efecanbayat.deliveryapp.data.entity.foodadd.FoodAddResponse
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantResponse
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,5 +19,9 @@ class RestaurantDetailViewModel @Inject constructor(
 
     fun getRestaurantDetail(restaurantId: String): LiveData<Resource<RestaurantResponse>> {
         return apiRepository.getRestaurantById(restaurantId)
+    }
+
+    fun addFood(restaurantId: String,request: FoodAddRequest): LiveData<Resource<FoodAddResponse>> {
+        return apiRepository.addFood(restaurantId,request)
     }
 }

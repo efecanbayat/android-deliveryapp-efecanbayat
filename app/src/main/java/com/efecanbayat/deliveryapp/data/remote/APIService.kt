@@ -3,6 +3,8 @@ package com.efecanbayat.deliveryapp.data.remote
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemResponse
 import com.efecanbayat.deliveryapp.data.entity.food.FoodResponse
+import com.efecanbayat.deliveryapp.data.entity.foodadd.FoodAddRequest
+import com.efecanbayat.deliveryapp.data.entity.foodadd.FoodAddResponse
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginResponse
 import com.efecanbayat.deliveryapp.data.entity.order.OrderListResponse
@@ -52,4 +54,7 @@ interface APIService {
 
     @POST("a/restaurant")
     suspend fun addRestaurant(@Body request: RestaurantAddRequest): Response<RestaurantAddResponse>
+
+    @POST("a/restaurant/{restaurantId}/meal")
+    suspend fun addFood(@Path("restaurantId") restaurantId:String, @Body request: FoodAddRequest): Response<FoodAddResponse>
 }

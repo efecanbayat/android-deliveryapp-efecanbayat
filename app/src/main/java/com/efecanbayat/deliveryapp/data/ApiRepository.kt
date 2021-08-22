@@ -2,6 +2,7 @@ package com.efecanbayat.deliveryapp.data
 
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItem
 import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
+import com.efecanbayat.deliveryapp.data.entity.foodadd.FoodAddRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
@@ -73,6 +74,10 @@ class ApiRepository @Inject constructor(
 
     fun addRestaurant(request: RestaurantAddRequest) = performNetworkOperation {
         remoteDataSource.addRestaurant(request)
+    }
+
+    fun addFood(restaurantId: String,request: FoodAddRequest) = performNetworkOperation {
+        remoteDataSource.addFood(restaurantId,request)
     }
 
     fun getBasket() = localDataSource.getBasket()

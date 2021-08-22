@@ -18,6 +18,7 @@
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_basket.xml" value="0.36666666666666664" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_first_onboarding.xml" value="0.2391304347826087" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_food_add.xml" value="0.36666666666666664" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_food_detail.xml" value="0.2" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/fragment_login.xml" value="0.2" />
@@ -36,6 +37,7 @@
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_category.xml" value="0.2477355072463768" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_food.xml" value="0.25742574257425743" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_ingredient.xml" value="0.2391304347826087" />
+        <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_ingredient_card.xml" value="0.36666666666666664" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_order.xml" value="0.2346014492753623" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_order_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/ornekler/DeliveryApp/app/src/main/res/layout/item_restaurant.xml" value="0.2477355072463768" />
