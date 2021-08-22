@@ -74,6 +74,6 @@ class ApiRepository @Inject constructor(
 
     fun addToBasket(basketItem: BasketItem) = localDataSource.addToBasket(basketItem)
 
-    fun deleteFromBasket(basketItem: BasketItem) = localDataSource.deleteFromBasket(basketItem)
+    fun deleteFromBasket(itemList: ArrayList<BasketItem>) = localDataSource.deleteFromBasket(itemList)
 
 }

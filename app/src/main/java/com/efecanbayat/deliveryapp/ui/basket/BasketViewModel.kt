@@ -18,7 +18,7 @@ class BasketViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ): ViewModel() {
 
-    var list = ArrayList<BasketItem>()
+    var itemList = ArrayList<BasketItem>()
 
     fun getBasket(): List<BasketItem> {
         return apiRepository.getBasket()
@@ -27,6 +27,10 @@ class BasketViewModel @Inject constructor(
     fun postBulkOrder(restaurantId: String, mealsId: ArrayList<String>): LiveData<Resource<BasketItemResponse>> {
         val request = BasketItemRequest(restaurantId,mealsId)
         return apiRepository.postBulkOrder(request)
+    }
+
+    fun deleteFromBasket(itemList: ArrayList<BasketItem>) {
+        return apiRepository.deleteFromBasket(itemList)
     }
 
 }

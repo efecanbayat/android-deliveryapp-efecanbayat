@@ -16,5 +16,5 @@ interface BasketDao {
     fun addToBasket(basketItem: BasketItem?)
 
     @Delete
-    fun deleteFromBasket(basketItem: BasketItem?)
+    fun deleteFromBasket(itemList: ArrayList<BasketItem>?)
 }

@@ -24,7 +24,7 @@ class LocalDataSource @Inject constructor(
         basketDao.addToBasket(basketItem)
     }
 
-    fun deleteFromBasket(basketItem: BasketItem) {
-        basketDao.deleteFromBasket(basketItem)
+    fun deleteFromBasket(itemList: ArrayList<BasketItem>) {
+        basketDao.deleteFromBasket(itemList)
     }
 }
