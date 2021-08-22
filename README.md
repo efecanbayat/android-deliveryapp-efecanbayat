@@ -66,15 +66,15 @@ This project is a food delivery application. In this project I learned the most 
 
 <img src="./gifs/food_add.gif" height="500px" width="250px"/>
 
-#### Order Card Screen
+#### Order Card Screen, Last Orders Screen
 -----
 
-* Clear button cleans the order card
+* Clear button clears the basket
 * Order button send orders to last orders at profile screen
 
 <img src="./gifs/order.gif" height="500px" width="250px"/>
 
-#### Profile, Update User, Last Orders Screens
+#### Profile, Update User
 -----
 
 <img src="./gifs/profile.gif" height="500px" width="250px"/>
