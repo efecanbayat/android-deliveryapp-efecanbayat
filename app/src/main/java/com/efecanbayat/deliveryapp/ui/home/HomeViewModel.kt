@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.efecanbayat.deliveryapp.data.ApiRepository
 import com.efecanbayat.deliveryapp.data.entity.restaurant.Restaurant
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantListResponse
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddRequest
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddResponse
 import com.efecanbayat.deliveryapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -24,5 +26,9 @@ class HomeViewModel @Inject constructor(
 
     fun getRestaurantByCategory(category: String): LiveData<Resource<RestaurantListResponse>> {
         return apiRepository.getRestaurantByCategory(category)
+    }
+
+    fun addRestaurant(request: RestaurantAddRequest): LiveData<Resource<RestaurantAddResponse>> {
+        return apiRepository.addRestaurant(request)
     }
 }

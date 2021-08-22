@@ -5,6 +5,7 @@ import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddRequest
 import com.efecanbayat.deliveryapp.data.local.LocalDataSource
 import com.efecanbayat.deliveryapp.data.remote.RemoteDataSource
 import com.efecanbayat.deliveryapp.utils.performAuthTokenNetworkOperation
@@ -68,6 +69,10 @@ class ApiRepository @Inject constructor(
 
     fun getRestaurantByCategory(category: String) = performNetworkOperation {
         remoteDataSource.getRestaurantByCategory(category)
+    }
+
+    fun addRestaurant(request: RestaurantAddRequest) = performNetworkOperation {
+        remoteDataSource.addRestaurant(request)
     }
 
     fun getBasket() = localDataSource.getBasket()

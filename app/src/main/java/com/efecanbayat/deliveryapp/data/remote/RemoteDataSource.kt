@@ -4,6 +4,7 @@ import com.efecanbayat.deliveryapp.data.entity.basket.BasketItemRequest
 import com.efecanbayat.deliveryapp.data.entity.login.LoginRequest
 import com.efecanbayat.deliveryapp.data.entity.profile.UserRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddRequest
 import com.efecanbayat.deliveryapp.utils.BaseDataSource
 import javax.inject.Inject
 
@@ -44,5 +45,9 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) :
 
     suspend fun getRestaurantByCategory(category: String) = getResult {
         apiService.getRestaurantByCategory(category)
+    }
+
+    suspend fun addRestaurant(request: RestaurantAddRequest) = getResult {
+        apiService.addRestaurant(request)
     }
 }

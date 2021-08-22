@@ -13,6 +13,8 @@ import com.efecanbayat.deliveryapp.data.entity.register.RegisterRequest
 import com.efecanbayat.deliveryapp.data.entity.register.RegisterResponse
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantListResponse
 import com.efecanbayat.deliveryapp.data.entity.restaurant.RestaurantResponse
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddRequest
+import com.efecanbayat.deliveryapp.data.entity.restaurantadd.RestaurantAddResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -47,4 +49,7 @@ interface APIService {
 
     @GET("a/restaurant/cuisine/{cuisineName}")
     suspend fun getRestaurantByCategory(@Path("cuisineName") category: String): Response<RestaurantListResponse>
+
+    @POST("a/restaurant")
+    suspend fun addRestaurant(@Body request: RestaurantAddRequest): Response<RestaurantAddResponse>
 }

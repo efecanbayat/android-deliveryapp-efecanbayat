@@ -31,4 +31,33 @@
     <string name="basket">Basket</string>
     <string name="back">Back</string>
     <string name="clear">Clear</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="district">District</string>
+    <string name="restaurant_address">Restaurant Address</string>
+    <string name="delivery_info">Delivery Info</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="min_delivery_fee">Min Delivery Fee</string>
+    <string name="image_url">Image Url</string>
+    <string name="add">Add</string>
+    <string name="add_button">Add button</string>
+
+    <string-array name="Categories">
+        <item>Burger</item>
+        <item>Pizza</item>
+        <item>Kebab</item>
+        <item>Dessert</item>
+        <item>Chicken</item>
+        <item>Soup</item>
+    </string-array>
+
+    <string-array name="PaymentMethods">
+        <item>Online Credit/Bank Card</item>
+        <item>Credit Card</item>
+        <item>Cash</item>
+        <item>Ticket Restaurant</item>
+        <item>Sodexo Restaurant Pass</item>
+        <item>Multinet</item>
+        <item>SetCard</item>
+    </string-array>
+
 </resources>

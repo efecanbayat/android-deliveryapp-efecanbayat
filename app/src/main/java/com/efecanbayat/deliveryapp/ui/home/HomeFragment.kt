@@ -45,6 +45,11 @@ class HomeFragment : Fragment() {
 
     private fun addListeners() {
 
+        binding.addRestaurantButton.setOnClickListener {
+            val dialog = RestaurantAddFragment()
+            dialog.show(requireActivity().supportFragmentManager,"addRestaurant")
+        }
+
         restaurantAdapter.addListener(object : IRestaurantOnClickListener {
             override fun onClick(restaurant: Restaurant) {
                 val action =
