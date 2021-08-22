@@ -38,9 +38,9 @@ class HomeViewModel @Inject constructor(
 
         val filterList: ArrayList<Restaurant> = arrayListOf()
         restaurantList?.forEach { restaurant ->
-            if (restaurant.name.contains(text,true))
+            if (restaurant.name.contains(text, true))
                 filterList.add(restaurant)
-            else if (restaurant.district.contains(text,true))
+            else if (restaurant.district.contains(text, true))
                 filterList.add(restaurant)
         }
         return filterList

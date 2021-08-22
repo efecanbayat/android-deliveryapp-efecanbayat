@@ -44,6 +44,7 @@
     <string name="food_name">Food Name</string>
     <string name="description">Description</string>
     <string name="ingredients">Ingredients</string>
+    <string name="search_restaurant">Search restaurant</string>
 
     <string-array name="Categories">
         <item>Burger</item>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,7 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
-
     private val restaurantAdapter = RestaurantsAdapter()
     private val categoryAdapter = CategoriesAdapter()
 
@@ -38,30 +38,84 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
-        fetchRestaurants()
+        initCategoryAdapter()
+        initRestaurantAdapter()
         fetchCategories()
+        fetchRestaurants()
         addListeners()
     }
 
-    private fun addListeners() {
+    private fun initCarousel() {
+        val images = ArrayList<Int>()
+        images.add(R.drawable.discount)
+        images.add(R.drawable.discount2)
+        images.add(R.drawable.discount3)
+        binding.carouselView.pageCount = images.size
 
+        binding.carouselView.setImageListener { position, imageView ->
+            imageView.setImageResource(images[position])
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        }
+    }
+
+    private fun initCategoryAdapter() {
+        binding.categoryRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRecyclerView.adapter = categoryAdapter
+    }
+
+    private fun initRestaurantAdapter() {
+        binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.restaurantRecyclerView.adapter = restaurantAdapter
+    }
+
+    private fun fetchCategories() {
+        val categoryList = ArrayList<Category>()
+        categoryList.add(Category(R.drawable.ic_dish, "All"))
+        categoryList.add(Category(R.drawable.ic_burger, "Burger"))
+        categoryList.add(Category(R.drawable.ic_pizza, "Pizza"))
+        categoryList.add(Category(R.drawable.ic_chicken, "Chicken"))
+        categoryList.add(Category(R.drawable.ic_kebab, "Kebab"))
+        categoryList.add(Category(R.drawable.ic_soup, "Soup"))
+        categoryList.add(Category(R.drawable.ic_dessert, "Dessert"))
+
+        categoryAdapter.setCategoryList(categoryList)
+    }
+
+    private fun fetchRestaurants() {
+        viewModel.getRestaurants().observe(viewLifecycleOwner, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.restaurantRecyclerView.visibility = View.GONE
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.restaurantRecyclerView.visibility = View.VISIBLE
+                    viewModel.restaurantList = it.data?.restaurantList
+                    setRestaurants(viewModel.restaurantList)
+                }
+                Resource.Status.ERROR -> {
+                    Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun setRestaurants(restaurantList: ArrayList<Restaurant>?) {
+        restaurantAdapter.setRestaurantList(restaurantList)
+    }
+
+    private fun addListeners() {
         binding.addRestaurantButton.setOnClickListener {
-            val dialog = RestaurantAddFragment()
-            dialog.show(requireActivity().supportFragmentManager,"addRestaurant")
+            val restaurantAddDialog = RestaurantAddFragment()
+            restaurantAddDialog.show(
+                requireActivity().supportFragmentManager,
+                "addRestaurantDialog"
+            )
         }
 
-        restaurantAdapter.addListener(object : IRestaurantOnClickListener {
-            override fun onClick(restaurant: Restaurant) {
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
-                findNavController().navigate(action)
-                restaurantAdapter.removeListeners()
-            }
-
-        })
-
-        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 val filterList = viewModel.searchTextOnRestaurantList(query)
                 setRestaurants(filterList)
@@ -98,74 +152,26 @@ class HomeFragment : Fragment() {
 
                             }
                             Resource.Status.ERROR -> {
-
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error! Try again",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     })
             }
 
         })
-    }
 
-
-    private fun fetchRestaurants() {
-        viewModel.getRestaurants().observe(viewLifecycleOwner, {
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.restaurantRecyclerView.visibility = View.GONE
-                }
-                Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.restaurantRecyclerView.visibility = View.VISIBLE
-                    viewModel.restaurantList = it.data?.restaurantList
-                    setRestaurants(viewModel.restaurantList)
-                }
-                Resource.Status.ERROR -> {
-
-                }
+        restaurantAdapter.addListener(object : IRestaurantOnClickListener {
+            override fun onClick(restaurant: Restaurant) {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(restaurant.id)
+                findNavController().navigate(action)
+                restaurantAdapter.removeListener()
             }
+
         })
-    }
-
-    private fun setRestaurants(restaurantList: ArrayList<Restaurant>?) {
-        restaurantAdapter.setRestaurantList(restaurantList)
-    }
-
-    private fun initCarousel() {
-        val images = ArrayList<Int>()
-        images.add(R.drawable.discount)
-        images.add(R.drawable.discount2)
-        images.add(R.drawable.discount3)
-        binding.carouselView.pageCount = images.size
-
-        binding.carouselView.setImageListener { position, imageView ->
-            imageView.setImageResource(images[position])
-            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        }
-    }
-
-    private fun fetchCategories() {
-
-        val categoryList = ArrayList<Category>()
-        categoryList.add(Category(R.drawable.ic_dish, "All"))
-        categoryList.add(Category(R.drawable.ic_burger, "Burger"))
-        categoryList.add(Category(R.drawable.ic_pizza, "Pizza"))
-        categoryList.add(Category(R.drawable.ic_chicken, "Chicken"))
-        categoryList.add(Category(R.drawable.ic_kebab, "Kebab"))
-        categoryList.add(Category(R.drawable.ic_soup, "Soup"))
-        categoryList.add(Category(R.drawable.ic_dessert, "Dessert"))
-
-        categoryAdapter.setCategoryList(categoryList)
-    }
-
-    private fun init() {
-
-        binding.restaurantRecyclerView.layoutManager = GridLayoutManager(context, 2)
-        binding.restaurantRecyclerView.adapter = restaurantAdapter
-
-        binding.categoryRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.categoryRecyclerView.adapter = categoryAdapter
     }
 }

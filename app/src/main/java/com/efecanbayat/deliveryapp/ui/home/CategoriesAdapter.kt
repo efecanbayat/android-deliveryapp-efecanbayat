@@ -1,16 +1,16 @@
 package com.efecanbayat.deliveryapp.ui.home
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.efecanbayat.deliveryapp.R
 import com.efecanbayat.deliveryapp.data.entity.Category
 import com.efecanbayat.deliveryapp.databinding.ItemCategoryBinding
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
-    private var list = ArrayList<Category>()
+    private var categoryList = ArrayList<Category>()
     private var listener: ICategoryOnClickListener? = null
     private var selectedItem = 0
 
@@ -24,33 +24,43 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewH
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        val item = list[position]
+        val category = categoryList[position]
 
-        Glide.with(holder.binding.categoryImageView.context)
-            .load(item.categoryImage).into(holder.binding.categoryImageView)
+        holder.binding.apply {
 
-        holder.binding.categoryNameTextView.text = item.categoryName
+            Glide.with(categoryImageView.context)
+                .load(category.categoryImage).into(categoryImageView)
 
+            categoryNameTextView.text = category.categoryName
+
+            if (selectedItem == position) {
+                categoryCardView.setCardBackgroundColor(
+                    categoryCardView.context.getColor(
+                        R.color.primary
+                    )
+                )
+            } else {
+                categoryCardView.setCardBackgroundColor(
+                    categoryCardView.context.getColor(
+                        R.color.secondary_dark
+                    )
+                )
+            }
+        }
 
         holder.itemView.setOnClickListener {
             selectedItem = holder.adapterPosition
-            listener?.onClick(item)
+            listener?.onClick(category)
             notifyDataSetChanged()
-        }
-
-        if (selectedItem == position) {
-            holder.binding.categoryCardView.setCardBackgroundColor(Color.GREEN)
-        }else {
-            holder.binding.categoryCardView.setCardBackgroundColor(Color.WHITE)
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return categoryList.size
     }
 
-    fun setCategoryList(list: List<Category>) {
-        this.list = ArrayList(list)
+    fun setCategoryList(categoryList: List<Category>) {
+        this.categoryList = ArrayList(categoryList)
         notifyDataSetChanged()
     }
 

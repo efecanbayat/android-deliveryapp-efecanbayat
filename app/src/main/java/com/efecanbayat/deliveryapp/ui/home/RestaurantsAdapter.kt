@@ -7,29 +7,32 @@ import com.bumptech.glide.Glide
 import com.efecanbayat.deliveryapp.data.entity.restaurant.Restaurant
 import com.efecanbayat.deliveryapp.databinding.ItemRestaurantBinding
 
-class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
+class RestaurantsAdapter : RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
 
     private var restaurantlist = ArrayList<Restaurant>()
     private var listener: IRestaurantOnClickListener? = null
 
-    inner class RestaurantsViewHolder(val binding: ItemRestaurantBinding): RecyclerView.ViewHolder(binding.root)
+    inner class RestaurantsViewHolder(val binding: ItemRestaurantBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantsViewHolder {
-        val binding = ItemRestaurantBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ItemRestaurantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RestaurantsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
-        val item = restaurantlist[position]
+        val restaurant = restaurantlist[position]
 
-        Glide.with(holder.binding.restaurantImageView.context)
-            .load(item.image).into(holder.binding.restaurantImageView)
+        holder.binding.apply {
+            Glide.with(restaurantImageView.context)
+                .load(restaurant.image).into(restaurantImageView)
 
-        holder.binding.restaurantNameTextView.text = item.name
-        holder.binding.restaurantLocationTextView.text = item.district
+            restaurantNameTextView.text = restaurant.name
+            restaurantLocationTextView.text = restaurant.district
+        }
 
         holder.itemView.setOnClickListener {
-            listener?.onClick(item)
+            listener?.onClick(restaurant)
         }
 
     }
@@ -38,15 +41,15 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
         return restaurantlist.size
     }
 
-    fun addListener(listener: IRestaurantOnClickListener){
+    fun addListener(listener: IRestaurantOnClickListener) {
         this.listener = listener
     }
 
-    fun removeListeners(){
+    fun removeListener() {
         this.listener = null
     }
 
-    fun setRestaurantList(restaurantlist: ArrayList<Restaurant>?){
+    fun setRestaurantList(restaurantlist: ArrayList<Restaurant>?) {
         restaurantlist?.let {
             this.restaurantlist = restaurantlist
             notifyDataSetChanged()

@@ -33,25 +33,32 @@ class RestaurantAddFragment() : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initCategoriesSpinner()
+        initPaymentMethodsSpinner()
+        addListeners()
     }
 
-    private fun init() {
+    private fun initCategoriesSpinner() {
 
         val categories = resources.getStringArray(R.array.Categories)
         val categoryAdapter = ArrayAdapter(
             requireContext(), android.R.layout.simple_spinner_dropdown_item, categories
         )
         binding.categorySpinner.adapter = categoryAdapter
+    }
+
+    private fun initPaymentMethodsSpinner() {
 
         val paymentMethods = resources.getStringArray(R.array.PaymentMethods)
         val paymentMethodAdapter = ArrayAdapter(
             requireContext(), android.R.layout.simple_spinner_dropdown_item, paymentMethods
         )
         binding.paymentSpinner.adapter = paymentMethodAdapter
+    }
+
+    private fun addListeners() {
 
         binding.addButton.setOnClickListener {
-
             val restaurantImage = binding.imageUrlEditText.editText?.text.toString()
             val restaurantName = binding.nameEditText.editText?.text.toString()
             val restaurantCategory = binding.categorySpinner.selectedItem.toString()
@@ -63,34 +70,102 @@ class RestaurantAddFragment() : BottomSheetDialogFragment() {
             val paymentMethod = binding.categorySpinner.selectedItem.toString()
             val rating = Random.nextInt(5, 10)
 
-            viewModel.addRestaurant(
-                RestaurantAddRequest(
-                    restaurantImage,
-                    restaurantName,
-                    restaurantCategory,
-                    restaurantDistrict,
-                    restaurantAddress,
-                    deliveryInfo,
-                    deliveryTime,
-                    minDeliveryFee,
-                    paymentMethod,
-                    rating
-                )
-            ).observe(viewLifecycleOwner, {
-                when (it.status) {
-                    Resource.Status.LOADING -> {
+            val isNull = nullCheck(
+                restaurantImage,
+                restaurantName,
+                restaurantCategory,
+                restaurantDistrict,
+                restaurantAddress,
+                deliveryInfo,
+                deliveryTime,
+                minDeliveryFee,
+                paymentMethod
+            )
 
+            if (!isNull){
+                Toast.makeText(requireContext(), "Please fill in all fields ", Toast.LENGTH_SHORT).show()
+            }else{
+                viewModel.addRestaurant(
+                    RestaurantAddRequest(
+                        restaurantImage,
+                        restaurantName,
+                        restaurantCategory,
+                        restaurantDistrict,
+                        restaurantAddress,
+                        deliveryInfo,
+                        deliveryTime,
+                        minDeliveryFee,
+                        paymentMethod,
+                        rating
+                    )
+                ).observe(viewLifecycleOwner, {
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.itemsConstraintLayout.visibility = View.GONE
+                        }
+                        Resource.Status.SUCCESS -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.itemsConstraintLayout.visibility = View.VISIBLE
+                            Toast.makeText(requireContext(), "Restaurant Added", Toast.LENGTH_SHORT)
+                                .show()
+                            dismiss()
+                            findNavController().navigate(R.id.action_homeFragment_self)
+                        }
+                        Resource.Status.ERROR -> {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(requireContext(), "Error! Try again", Toast.LENGTH_SHORT)
+                                .show()
+                            dismiss()
+                        }
                     }
-                    Resource.Status.SUCCESS -> {
-                        Toast.makeText(requireContext(), "Restaurant Added", Toast.LENGTH_SHORT).show()
-                        dismiss()
-                        findNavController().navigate(R.id.action_homeFragment_self)
-                    }
-                    Resource.Status.ERROR -> {
+                })
+            }
 
-                    }
-                }
-            })
+            
+        }
+    }
+
+    private fun nullCheck(
+        restaurantImage: String,
+        restaurantName: String,
+        restaurantCategory: String,
+        restaurantDistrict: String,
+        restaurantAddress: String,
+        deliveryInfo: String,
+        deliveryTime: String,
+        minDeliveryFee: String,
+        paymentMethod: String,
+    ): Boolean {
+        when {
+            restaurantImage.isEmpty() -> {
+                return false
+            }
+            restaurantName.isEmpty() -> {
+                return false
+            }
+            restaurantCategory.isEmpty() -> {
+                return false
+            }
+            restaurantDistrict.isEmpty() -> {
+                return false
+            }
+            restaurantAddress.isEmpty() -> {
+                return false
+            }
+            deliveryInfo.isEmpty() -> {
+                return false
+            }
+            deliveryTime.isEmpty() -> {
+                return false
+            }
+            minDeliveryFee.isEmpty() -> {
+                return false
+            }
+            paymentMethod.isEmpty() -> {
+                return false
+            }
+            else -> return true
         }
     }
 }
